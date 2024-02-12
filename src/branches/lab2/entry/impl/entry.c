@@ -12,4 +12,6 @@ void run_branch( ) {
 	test_vector_content1( );
 
 	test_vdvector_content0( );
+
+	return 0;
 }

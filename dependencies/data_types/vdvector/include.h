@@ -2,7 +2,7 @@
 #include <assert.h>
 
 typedef struct vdvector {
-	int		*m_data;
+	void	*m_data;
 	size_t   m_size;
 	size_t   m_capacity;
 	size_t	 m_base_type_size;
@@ -17,3 +17,15 @@ void		vdvector_clear( vdvector_t *vec );
 void		vdvector_shrinkToFit( vdvector_t *vec );
 
 void		vdvector_free( vdvector_t *vec );
+
+int			vdvector_isEmpty( const vdvector_t vec );
+
+int			vdvector_isFull( const vdvector_t vec );
+
+void		vdvector_get( vdvector_t *vec, const size_t slot, void *dst );
+
+void		vdvector_set( vdvector_t *vec, const size_t slot, void *src );
+
+void		vdvector_pushBack( vdvector_t *vec, void *src );
+
+void		vdvector_popBack( vdvector_t *vec );
