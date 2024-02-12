@@ -7,5 +7,5 @@
 void run_branch( ) {
 	test_vector_content0( );
 
-	printf( "hello!" );
+	test_vector_content1( );
 }

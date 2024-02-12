@@ -12,7 +12,8 @@ vector_t vector_create( const size_t size ) {
 	else {
 		vec.m_data = malloc( sizeof( int ) * size );
 		if ( !vec.m_data ) {
-			fprintf( stderr, "0x%p: %s > bad alloc", &vector_create, ERR_GET_FN_NAME( vector_create ) );
+			//fprintf( stderr, "0x%p: %s > bad alloc", &vector_create, ERR_GET_FN_NAME( vector_create ) );
+			STD_ERROR( vector_create, "bad allocation for vec.m_data{}" );
 			exit( 1 );
 		}
 	}
@@ -34,7 +35,8 @@ void vector_reverse( vector_t *vec, const size_t new_capacity ) {
 		vec->m_capacity = new_capacity;
 		vec->m_data = realloc( vec->m_data, sizeof( int ) * vec->m_capacity );
 		if ( !vec->m_data ) {
-			fprintf( stderr, "0x%p: %s > bad realloc", &vector_reverse, ERR_GET_FN_NAME( vector_reverse ) );
+			//fprintf( stderr, "0x%p: %s > bad realloc", &vector_reverse, ERR_GET_FN_NAME( vector_reverse ) );
+			STD_ERROR( vector_reverse, "bad reallocation for vec.m_data{}" );
 			exit( 1 );
 		}
 	}
@@ -55,4 +57,46 @@ void vector_free( vector_t *vec ) {
 	vec->m_size = 0u;
 	vec->m_capacity = 0u;
 	vec->m_data = NULL;
+}
+
+int	vector_isEmpty( const vector_t vec ) {
+	return vec.m_size == 0u;
+}
+
+int	vector_isFull( const vector_t vec ) {
+	return vec.m_size == vec.m_capacity;
+}
+
+int vector_get( const vector_t vec, const size_t slot ) {
+	if ( slot >= vec.m_size ) {
+		STD_ERROR( vector_get, "index is out of vector range" );
+		return INT_MAX;
+	}
+
+	return vec.m_data[ slot ];
+}
+
+void vector_pushBack( vector_t *vec, const int value ) {
+	if ( !vec->m_capacity )
+		vector_reverse( vec, 1u );
+
+	if ( vec->m_size >= vec->m_capacity )
+		vector_reverse( vec, vec->m_capacity * 2u );
+
+	vec->m_data[ vec->m_size++ ] = value;
+}
+
+void vector_popBack( vector_t *vec ) {
+	if ( !vec->m_size ) {
+		STD_ERROR( vector_popBack, "vector empty" );
+	}
+
+	vec->m_data[ vec->m_size-- ] = 0;
+}
+
+void vector_print( const vector_t vec ) {
+	printf( "{ %d: ", vec.m_capacity );
+	for ( size_t i = 0u; i < vec.m_size; ++i )
+		printf( "%d ", vec.m_data[ i ] );
+	printf( "}\n" );
 }
