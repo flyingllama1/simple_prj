@@ -1,10 +1,6 @@
 #include <malloc.h>
 #include <assert.h>
 
-#define ERR_GET_FN_NAME(fn) (#fn)
-#define STD_ERROR(fn, err) \
-	fprintf(stderr, "0x%p: %s -> %s.\n", &fn, ERR_GET_FN_NAME(fn), err)
-
 typedef struct vector {
 	int    *m_data;
 	size_t  m_size;

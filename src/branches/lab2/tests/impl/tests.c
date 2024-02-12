@@ -2,6 +2,8 @@
 
 #include <vector/include.h>
 
+#include <vdvector/include.h>
+
 void test_vector_content0( ) {
 	vector_t vec = vector_create( 0u );
 	assert( vec.m_data == NULL );
@@ -92,4 +94,32 @@ void test_vector_content1( ) {
 	test_pushBack_fullVector( );
 	test_popBack_nonEmptyVector( );
 	test_vector_memory( );
+}
+
+void test_vdvector_content0( ) {
+	vdvector_t vec = vdvector_create( 0u, sizeof( int ) );
+	assert( vec.m_data == NULL );
+	assert( vec.m_base_type_size == sizeof( int ) );
+
+	vec = vdvector_create( 1u, sizeof( short ) );
+	assert( vec.m_capacity == 1u );
+	assert( vec.m_base_type_size == sizeof( short ) );
+
+	vdvector_reverse( &vec, 2u );
+	assert( vec.m_capacity == 2u );
+
+	vec.m_size = 1u;
+	vdvector_clear( &vec );
+	assert( vec.m_size == 0u );
+	assert( vec.m_data != NULL );
+
+	vdvector_reverse( &vec, 4u );
+	assert( vec.m_capacity == 4u );
+
+	vec.m_size = 2u;
+	vdvector_shrinkToFit( &vec );
+	assert( vec.m_capacity == 2u );
+
+	vdvector_free( &vec );
+	assert( vec.m_data == NULL );
 }

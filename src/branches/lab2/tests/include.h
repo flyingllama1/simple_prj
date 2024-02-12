@@ -11,3 +11,5 @@ void test_popBack_nonEmptyVector( );
 void test_vector_memory( );
 
 void test_vector_content1( );
+
+void test_vdvector_content0( );
