@@ -1,6 +1,6 @@
 ## **A simple project created to perform Laboratory Works.**
 
-# Ветвления проекта
-**"branches//lab1" / "src_branch_0"** - Лабораторная Работа №19.13.  
+# Project Branches
+**"branches//lab1" / "src_branch_0"** - Laboratory W. №19.13.  
 
-**"branches//lab2" / "src_branch_1"** - Лабораторная Работа №19.14.
+**"branches//lab2" / "src_branch_1"** - Laboratory W. №19.14.
