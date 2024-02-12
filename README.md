@@ -5,4 +5,4 @@
 
 **"branches//lab2" / "src_branch_1"** - Laboratory W. ¹19.14.
 
-<img src="https://github.com/flyingllama1/gpixel-engine/blob/main/gifgit%20(1).gif?raw=true" height="256">
+<img src="https://github.com/flyingllama1/simple_prj/blob/main/important.gif?raw=true" height="256">
