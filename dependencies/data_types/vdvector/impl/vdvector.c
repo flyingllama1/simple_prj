@@ -67,6 +67,10 @@ int	vdvector_isFull( const vdvector_t vec ) {
 }
 
 void vdvector_get( vdvector_t *vec, const size_t slot, void *dst ) {
+	if ( !vec->m_data ) {
+		STD_ERROR_N_EXIT( vdvector_get, "failed access to vdvector`s memory" );
+	}
+
 	if ( slot >= vec->m_size ) {
 		STD_ERROR_N_EXIT( vdvector_get, "index is out of vdvector`s range" );
 	}
@@ -76,6 +80,10 @@ void vdvector_get( vdvector_t *vec, const size_t slot, void *dst ) {
 }
 
 void vdvector_set( vdvector_t *vec, const size_t slot, void *src ) {
+	if ( !vec->m_data ) {
+		STD_ERROR_N_EXIT( vdvector_get, "failed access to vdvector`s memory" );
+	}
+
 	if ( slot >= vec->m_size ) {
 		STD_ERROR_N_EXIT( vdvector_set, "index is out of vdvector`s range" );
 	}
@@ -95,6 +103,10 @@ void vdvector_pushBack( vdvector_t *vec, void *src ) {
 }
 
 void vdvector_popBack( vdvector_t *vec ) {
+	if ( !vec->m_data ) {
+		STD_ERROR_N_EXIT( vdvector_get, "failed access to vdvector`s memory" );
+	}
+
 	if ( !vec->m_size ) {
 		STD_ERROR( vdvector_popBack, "vdvector is empty" );
 	}

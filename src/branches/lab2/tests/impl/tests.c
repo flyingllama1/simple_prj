@@ -122,4 +122,34 @@ void test_vdvector_content0( ) {
 
 	vdvector_free( &vec );
 	assert( vec.m_data == NULL );
+
+	vec = vdvector_create( 2u, sizeof( short ) );
+	short a = 2;
+	short b = 4;
+	vdvector_pushBack( &vec, &a );
+	vdvector_pushBack( &vec, &b );
+	assert( vdvector_isEmpty( vec ) == 0 );
+	assert( vdvector_isFull( vec ) == 1 );
+
+	short resa, resb;
+	vdvector_get( &vec, 0, &resa );
+	vdvector_get( &vec, 1, &resb );
+	assert(
+		resa == a && resb == b
+	);
+
+	vdvector_clear( &vec );
+	assert( vdvector_isEmpty( vec ) == 1 );
+	assert( vdvector_isFull( vec ) == 0 );
+
+	vdvector_pushBack( &vec, &a );
+	vdvector_popBack( &vec );
+	assert( vdvector_isEmpty( vec ) == 1 );
+
+	vdvector_pushBack( &vec, &a );
+	vdvector_set( &vec, 0, &b );
+
+	short resc;
+	vdvector_get( &vec, 0, &resc );
+	assert( resc == b );
 }

@@ -66,8 +66,9 @@ int	vector_isFull( const vector_t vec ) {
 }
 
 int vector_get( const vector_t vec, const size_t slot ) {
-	//if ( !vec.m_data )
-	//		STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	if ( !vec.m_data ) {
+		STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	}
 
 	if ( slot >= vec.m_size ) {
 		STD_ERROR_N_EXIT( vector_get, "index is out of vector range" );
@@ -87,8 +88,9 @@ void vector_pushBack( vector_t *vec, const int value ) {
 }
 
 void vector_popBack( vector_t *vec ) {
-	//if ( !vec->m_data )
-	//	STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	if ( !vec->m_data ) {
+		STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	}
 
 	if ( !vec->m_size ) {
 		STD_ERROR( vector_popBack, "vector is empty" );
@@ -98,8 +100,9 @@ void vector_popBack( vector_t *vec ) {
 }
 
 int *vector_at( vector_t *vec, const size_t slot ) {
-	//if ( !vec->m_data )
-	//	STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	if ( !vec->m_data ) {
+		STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	}
 
 	if ( slot >= vec->m_size ) {
 		STD_ERROR_N_EXIT( vector_at, "index is out of vector range" );
@@ -109,22 +112,25 @@ int *vector_at( vector_t *vec, const size_t slot ) {
 }
 
 int *vector_back( vector_t *vec ) {
-	//if ( !vec->m_data )
-	//	STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	if ( !vec->m_data ) {
+		STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	}
 
 	return vec->m_data + ( vec->m_size - 1 );
 }
 
 int *vector_front( vector_t *vec ) {
-	//if ( !vec->m_data )
-	//	STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	if ( !vec->m_data ) {
+		STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	}
 
 	return vec->m_data;
 }
 
 void vector_print( const vector_t vec ) {
-	//if ( !vec.m_data )
-	//	STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	if ( !vec.m_data ) {
+		STD_ERROR_N_EXIT( vector_get, "failed access to vector`s memory" );
+	}
 
 	printf( "{ %d: ", vec.m_capacity );
 	for ( size_t i = 0u; i < vec.m_size; ++i )
