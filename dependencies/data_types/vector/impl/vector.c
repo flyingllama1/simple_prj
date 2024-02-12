@@ -94,6 +94,23 @@ void vector_popBack( vector_t *vec ) {
 	vec->m_data[ vec->m_size-- ] = 0;
 }
 
+int *vector_at( vector_t *vec, const size_t slot ) {
+	if ( slot >= vec->m_size ) {
+		STD_ERROR( vector_at, "index is out of vector range" );
+		exit( 1 );
+	}
+
+	return vec->m_data + slot;
+}
+
+int *vector_back( vector_t *vec ) {
+	return vec->m_data + ( vec->m_size - 1 );
+}
+
+int *vector_front( vector_t *vec ) {
+	return vec->m_data;
+}
+
 void vector_print( const vector_t vec ) {
 	printf( "{ %d: ", vec.m_capacity );
 	for ( size_t i = 0u; i < vec.m_size; ++i )

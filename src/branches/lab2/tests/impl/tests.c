@@ -60,8 +60,36 @@ void test_popBack_nonEmptyVector( ) {
 	assert( a.m_capacity == 1 );
 }
 
+void test_vector_memory( ) {
+	vector_t a = vector_create( 3u );
+
+	vector_pushBack( &a, 1 );
+	assert( *vector_front( &a ) == 1
+		&& *vector_back( &a ) == 1
+		&& *vector_at( &a, 0u ) == 1
+	);
+
+	vector_pushBack( &a, 2 );
+	vector_pushBack( &a, 3 );
+	assert( 
+		vector_get( a, 0u ) == 1 
+		&& vector_get( a, 1u ) == 2 
+		&& vector_get( a, 2u ) == 3 
+	);
+
+	*vector_back( &a ) = 1337;
+	*vector_front( &a ) = 123;
+	*vector_at( &a, 1u ) = 0xDEAD;
+	assert( 
+		vector_get( a, 0u ) == 123 
+		&& vector_get( a, 1u ) == 0xDEAD
+		&& vector_get( a, 2u ) == 1337
+	);
+}
+
 void test_vector_content1( ) {
 	test_pushBack_emptyVector( );
 	test_pushBack_fullVector( );
 	test_popBack_nonEmptyVector( );
+	test_vector_memory( );
 }
