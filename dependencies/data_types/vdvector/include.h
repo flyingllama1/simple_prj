@@ -10,7 +10,7 @@ typedef struct vdvector {
 
 vdvector_t  vdvector_create( const size_t size, const size_t type_size );
 
-void		vdvector_reverse( vdvector_t *vec, const size_t new_capacity );
+void		vdvector_reserve( vdvector_t *vec, const size_t new_capacity );
 
 void		vdvector_clear( vdvector_t *vec );
 

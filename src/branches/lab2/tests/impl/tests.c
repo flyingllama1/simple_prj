@@ -11,7 +11,7 @@ void test_vector_content0( ) {
 	vec = vector_create( 1u );
 	assert( vec.m_capacity == 1u );
 	
-	vector_reverse( &vec, 2u );
+	vector_reserve( &vec, 2u );
 	assert( vec.m_capacity == 2u );
 
 	vec.m_size = 1u;
@@ -19,7 +19,7 @@ void test_vector_content0( ) {
 	assert( vec.m_size == 0u );
 	assert( vec.m_data != NULL );
 
-	vector_reverse( &vec, 4u );
+	vector_reserve( &vec, 4u );
 	assert( vec.m_capacity == 4u );
 
 	vec.m_size = 2u;
@@ -105,7 +105,7 @@ void test_vdvector_content0( ) {
 	assert( vec.m_capacity == 1u );
 	assert( vec.m_base_type_size == sizeof( short ) );
 
-	vdvector_reverse( &vec, 2u );
+	vdvector_reserve( &vec, 2u );
 	assert( vec.m_capacity == 2u );
 
 	vec.m_size = 1u;
@@ -113,7 +113,7 @@ void test_vdvector_content0( ) {
 	assert( vec.m_size == 0u );
 	assert( vec.m_data != NULL );
 
-	vdvector_reverse( &vec, 4u );
+	vdvector_reserve( &vec, 4u );
 	assert( vec.m_capacity == 4u );
 
 	vec.m_size = 2u;

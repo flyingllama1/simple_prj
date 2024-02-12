@@ -9,7 +9,7 @@ typedef struct vector {
 
 vector_t vector_create( const size_t size );
 
-void	 vector_reverse( vector_t *vec, const size_t new_capacity );
+void	 vector_reserve( vector_t *vec, const size_t new_capacity );
 
 void	 vector_clear( vector_t *vec );
 

@@ -24,7 +24,7 @@ vdvector_t vdvector_create( const size_t size, const size_t type_size ) {
 	return vec;
 }
 
-void vdvector_reverse( vdvector_t *vec, const size_t new_capacity ) {
+void vdvector_reserve( vdvector_t *vec, const size_t new_capacity ) {
 	if ( new_capacity == 0 ) {
 		vector_free( vec );
 	}
@@ -35,7 +35,7 @@ void vdvector_reverse( vdvector_t *vec, const size_t new_capacity ) {
 		vec->m_capacity = new_capacity;
 		vec->m_data = realloc( vec->m_data, vec->m_base_type_size * vec->m_capacity );
 		if ( !vec->m_data ) {
-			STD_ERROR_N_EXIT( vdvector_reverse, "bad reallocation for vec.m_data{}" );
+			STD_ERROR_N_EXIT( vdvector_reserve, "bad reallocation for vec.m_data{}" );
 		}
 	}
 }
@@ -45,7 +45,7 @@ void vdvector_clear( vdvector_t *vec ) {
 }
 
 void vdvector_shrinkToFit( vdvector_t *vec ) {
-	vdvector_reverse( vec, vec->m_size );
+	vdvector_reserve( vec, vec->m_size );
 }
 
 void vdvector_free( vdvector_t *vec ) {
@@ -94,10 +94,10 @@ void vdvector_set( vdvector_t *vec, const size_t slot, void *src ) {
 
 void vdvector_pushBack( vdvector_t *vec, void *src ) {
 	if ( !vec->m_capacity )
-		vdvector_reverse( vec, 1u );
+		vdvector_reserve( vec, 1u );
 
 	if ( vec->m_size >= vec->m_capacity )
-		vdvector_reverse( vec, vec->m_capacity * 2u );
+		vdvector_reserve( vec, vec->m_capacity * 2u );
 
 	vdvector_set( vec, vec->m_size++, src );
 }
