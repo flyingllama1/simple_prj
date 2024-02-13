@@ -145,7 +145,7 @@ ordered_set_t ordered_set_intersection( const ordered_set_t a, const ordered_set
 	ordered_set_t parent = a;
 	ordered_set_t sub = b;
 	if ( b.m_size > a.m_size )
-		swap( ( void* )&a, ( void* )&b );
+		swap( &a, &b, sizeof( ordered_set_t ) );
 
 	for ( size_t i = 0u; i < parent.m_size; ++i ) {
 		size_t slot = binsrch( sub.m_data, sub.m_size, parent.m_data[ i ] );
@@ -167,7 +167,7 @@ ordered_set_t ordered_set_diff( const ordered_set_t a, const ordered_set_t b ) {
 	ordered_set_t parent = a;
 	ordered_set_t sub = b;
 	if ( b.m_size > a.m_size )
-		swap( ( void* )&a, ( void* )&b );
+		swap( &a, &b, sizeof( ordered_set_t ) );
 
 	for ( size_t i = 0u; i < parent.m_size; ++i ) {
 		size_t slot = binsrch( sub.m_data, sub.m_size, parent.m_data[ i ] );

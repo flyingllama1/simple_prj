@@ -11,5 +11,9 @@
 #include <ordered_set/include.h>
 
 void run_branch( ) {
-    printf( "hello11!" );
+    test_bset( );
+
+    test_unordered_set( );
+
+    test_ordered_set( );
 }

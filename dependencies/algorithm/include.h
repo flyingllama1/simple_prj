@@ -5,7 +5,7 @@ size_t binsrch( const int *array, const size_t size, const int x );
 
 size_t binsrch_me( const int *array, const size_t size, const int x );
 
-void swap( void *a, void *b );
+void swap( void *a, void *b, const size_t type_size );
 
 void iswap( int *a, int *b );
 

@@ -34,10 +34,10 @@ size_t binsrch_me( const int *array, const size_t size, const int x ) {
     return high;
 }
 
-void swap( void *a, void *b ) {
-    void *tmp = a;
-    a = b;
-    b = tmp;
+void swap( void *a, void *b, const size_t type_size ) {
+    char *src = a;
+    memcpy( a, b, type_size );
+    memcpy( b, src, type_size );
 }
 
 void iswap( int *a, int *b ) {
