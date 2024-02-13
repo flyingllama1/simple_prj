@@ -40,6 +40,25 @@ void swap( void *a, void *b ) {
     b = tmp;
 }
 
+void iswap( int *a, int *b ) {
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+int getMaxElementIndexInArray( int *const n, const size_t size ) {
+    int max = n[ 0 ];
+    int index = 0;
+    for ( int i = 1; i < size; ++i ) {
+        if ( n[ i ] > max ) {
+            max = n[ i ];
+            index = i;
+        }
+    }
+
+    return index;
+}
+
 void ascan( int *array, const size_t size ) {
     for ( size_t i = 0u; i < size; ++i )
         scanf( "%d", &array[ i ] );
