@@ -64,7 +64,7 @@ void test_task03( ) {
 	);
 
 	task03( &mat );
-	
+
 	matrix_t res = createMatrixFromArray(
 		( int[ ] ) {
 			5, 2, 3, 3, 3, 4,

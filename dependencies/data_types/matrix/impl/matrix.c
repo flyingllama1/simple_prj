@@ -117,9 +117,9 @@ void selectionSortColsMatrixByColCriteria( matrix_t mat, int( *criteria )( int *
 	for ( int i = mat.m_cols - 1; i > 0; --i ) {
 		int max = getMaxElementIndexInArray( values, i + 1 );
 		if ( max != i ) {
-			iswap( values + max, values + i );
+			swapInt( values + max, values + i );
 			for ( size_t j = 0u; j < mat.m_rows; ++j )
-				iswap( &mat.m_values[ j ][ max ], &mat.m_values[ j ][ i ] );
+				swapInt( &mat.m_values[ j ][ max ], &mat.m_values[ j ][ i ] );
 		}
 	}
 }
@@ -177,7 +177,7 @@ void transposeSquareMatrix( matrix_t *mat ) {
 
 	for ( size_t i = 0u; i < mat->m_rows - 1; ++i ) {
 		for ( size_t j = i + 1u; j < mat->m_rows; ++j ) {
-			iswap( &mat->m_values[ i ][ j ], &mat->m_values[ j ][ i ] );
+			swapInt( &mat->m_values[ i ][ j ], &mat->m_values[ j ][ i ] );
 		}
 	}
 }
@@ -285,9 +285,9 @@ void sortColsByMinElement( matrix_t mat ) {
 	for ( int i = 0; i < mat.m_cols; ++i ) {
 		int max = getMaxElementIndexInArray( values, i + 1 );
 		if ( max != i ) {
-			iswap( values + max, values + i );
+			swapInt( values + max, values + i );
 			for ( size_t j = 0u; j < mat.m_rows; ++j )
-				iswap( &mat.m_values[ j ][ max ], &mat.m_values[ j ][ i ] );
+				swapInt( &mat.m_values[ j ][ max ], &mat.m_values[ j ][ i ] );
 		}
 	}
 }

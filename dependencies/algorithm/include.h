@@ -9,11 +9,13 @@ size_t binsrch_me( const int *array, const size_t size, const int x );
 
 void swap( void *a, void *b, const size_t type_size );
 
-void iswap( int *a, int *b );
+void swapInt( int *a, int *b );
 
-int getMaxElementIndexInArray( int *const n, const size_t size );
+int getElementIndexInArrayIf_( int *const array, const size_t size, int( *comp )( int, int ) );
 
-int getMinElementIndexInArray( int *const n, const size_t size );
+int getMaxElementIndexInArray( int *const array, const size_t size );
+
+int getMinElementIndexInArray( int *const array, const size_t size );
 
 void ascan( int *array, const size_t size );
 
