@@ -62,3 +62,5 @@ void sortColsByMinElement( matrix_t mat );
 matrix_t mulMatrices( matrix_t *m1, matrix_t *m2 );
 
 void transposeIfMatrixHasNotEqualSumOfRows( matrix_t *mat );
+
+int isMutuallyInverseMatrices( matrix_t m1, matrix_t m2 );

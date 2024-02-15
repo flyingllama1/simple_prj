@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <assert.h>
 
+int max2( const int a, const int b );
+
 size_t binsrch( const int *array, const size_t size, const int x );
 
 size_t binsrch_me( const int *array, const size_t size, const int x );

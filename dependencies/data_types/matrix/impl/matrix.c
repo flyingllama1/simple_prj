@@ -339,3 +339,22 @@ void transposeIfMatrixHasNotEqualSumOfRows( matrix_t *mat ) {
 		transposeMatrix( mat );
 	}
 }
+
+int isMutuallyInverseMatrices( matrix_t m1, matrix_t m2 ) {
+	if ( m1.m_rows != m2.m_rows
+		|| m1.m_cols != m2.m_rows )
+		return 0;
+
+	for ( size_t i = 0u; i < m1.m_rows; ++i ) {
+		for ( size_t j = 0u; j < m2.m_cols; ++j ) {
+			int sum = 0;
+			for ( size_t k = 0u; k < m1.m_cols; ++k )
+				sum += ( m1.m_values[ i ][ k ] * m2.m_values[ k ][ j ] );
+
+			if ( sum != ( i == j ) )
+				return 0;
+		}
+	}
+
+	return 1;
+}

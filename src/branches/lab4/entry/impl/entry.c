@@ -48,6 +48,12 @@ void task05( matrix_t *mat ) {
 	transposeIfMatrixHasNotEqualSumOfRows( mat );
 }
 
+int task06( matrix_t *m1, matrix_t *m2 ) {
+	int ret = isMutuallyInverseMatrices( *m1, *m2 );
+
+	return ret;
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }

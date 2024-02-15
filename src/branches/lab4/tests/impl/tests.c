@@ -145,6 +145,50 @@ void test_task05B( ) {
 	assert( areTwoMatricesEqual( &mat, &ret ) == 0 );
 }
 
+void test_task06A( ) {
+	matrix_t m1 = createMatrixFromArray(
+		( int[ ] ) {
+			1, -2, 1,
+			2, 1, -1,
+			3, 2, -2
+		}, 3, 3
+	);
+
+	matrix_t m2 = createMatrixFromArray(
+		( int[ ] ) {
+			0, 2, -1,
+			-1, 5, -3,
+			-1, 8, -5
+		}, 3, 3
+	);
+
+	int ret = task06( &m1, &m2 );
+
+	assert( ret == 1 );
+}
+
+void test_task06B( ) {
+	matrix_t m1 = createMatrixFromArray(
+		( int[ ] ) {
+			1, -2, 1,
+			1, 1, -1,
+			3, 2, -2
+		}, 3, 3
+	);
+
+	matrix_t m2 = createMatrixFromArray(
+		( int[ ] ) {
+			0, 2, -1,
+			-1, 5, -3,
+			-1, 8, -5
+		}, 3, 3
+	);
+
+	int ret = task06( &m1, &m2 );
+
+	assert( ret == 0 );
+}
+
 void test_matrix_content( ) {
 	test_task01( );
 
@@ -157,4 +201,8 @@ void test_matrix_content( ) {
 	test_task05A( );
 
 	test_task05B( );
+
+	test_task06A( );
+	
+	test_task06B( );
 }
