@@ -54,8 +54,32 @@ void test_task02( ) {
 	assert( areTwoMatricesEqual( &mat, &res ) == 1 );
 }
 
+void test_task03( ) {
+	matrix_t mat = createMatrixFromArray(
+		( int[ ] ) {
+			3, 5, 2, 4, 3, 3,
+			2, 5, 1, 8, 2, 7,
+			6, 1, 4, 4, 8, 3,
+		}, 3, 6
+	);
+
+	task03( &mat );
+	
+	matrix_t res = createMatrixFromArray(
+		( int[ ] ) {
+			5, 2, 3, 3, 3, 4,
+			5, 1, 2, 2, 7, 8,
+			1, 4, 6, 8, 3, 4,
+		}, 3, 6
+	);
+
+	assert( areTwoMatricesEqual( &mat, &res ) == 1 );
+}
+
 void test_matrix_content( ) {
 	test_task01( );
 
 	test_task02( );
+
+	test_task03( );
 }

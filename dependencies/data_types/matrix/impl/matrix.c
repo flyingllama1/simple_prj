@@ -258,22 +258,34 @@ int getMax( int *a, int n ) {
 }
 
 void sortRowsByMinElement( matrix_t mat ) {
-	int *values = malloc( sizeof( int ) * mat.m_rows );
-	for ( size_t i = 0u; i < mat.m_rows; ++i ) {
-		values[ i ] = getMax( mat.m_values[ i ], mat.m_cols );
-		//printf( "max[%d] = %d\n", i, values[ i ] );
+	insertionSortRowsMatrixByRowCriteria( mat, getMax );
+}
+
+int getMin( int *a, int n ) {
+	int min = a[ 0 ];
+	for ( size_t i = 1u; i < n; ++i )
+		if ( min >= a[ i ] )
+			min = a[ i ];
+
+	return min;
+}
+
+void sortColsByMinElement( matrix_t mat ) {
+	int *values = malloc( sizeof( int ) * mat.m_cols );
+	for ( size_t i = 0u; i < mat.m_cols; ++i ) {
+		int *col = malloc( sizeof( int ) * mat.m_rows );
+		for ( size_t j = 0u; j < mat.m_rows; ++j )
+			col[ j ] = mat.m_values[ j ][ i ];
+
+		values[ i ] = getMin( col, mat.m_rows );
 	}
-	//printf( "start\n" );
-	for ( size_t i = 0u; i < mat.m_rows; ++i ) {
-		int min = i;
-		for ( int j = i + 1; j < mat.m_rows; j++ )
-			if ( values[ min ] > values[ j ] )
-				min = j;
-		
-		//printf( "index :%d\n", min );
-		if ( min != i ) {
-			iswap( &values[ i ], &values[ min ] );
-			swapRows( mat, i, min );
+
+	for ( int i = 0; i < mat.m_cols; ++i ) {
+		int max = getMaxElementIndexInArray( values, i + 1 );
+		if ( max != i ) {
+			iswap( values + max, values + i );
+			for ( size_t j = 0u; j < mat.m_rows; ++j )
+				iswap( &mat.m_values[ j ][ max ], &mat.m_values[ j ][ i ] );
 		}
 	}
 }

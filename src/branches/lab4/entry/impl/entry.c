@@ -33,6 +33,10 @@ void task02( matrix_t *mat ) {
 	sortRowsByMinElement( *mat );
 }
 
+void task03( matrix_t *mat ) {
+	sortColsByMinElement( *mat );
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }
