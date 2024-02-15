@@ -24,4 +24,6 @@ int task10( matrix_t *mat );
 
 int task11( matrix_t *mat );
 
+void task12( matrix_t *mat );
+
 void run_branch( );

@@ -286,6 +286,28 @@ void test_task11( ) {
 	assert( ret == 2 );
 }
 
+void test_task12( ) {
+	matrix_t mat = createMatrixFromArray(
+		( int[ ] ) {
+			1, 2, 3,
+			4, 5, 6,
+			7, 8, 1
+		}, 3, 3
+	);
+
+	task12( &mat );
+
+	matrix_t ret = createMatrixFromArray(
+		( int[ ] ) {
+			1, 2, 3,
+			1, 4, 7,
+			7, 8, 1
+		}, 3, 3
+	);
+
+	assert( areTwoMatricesEqual( &mat, &ret ) == 1 );
+}
+
 void test_matrix_content( ) {
 	test_task01( );
 
@@ -314,4 +336,6 @@ void test_matrix_content( ) {
 	test_task10( );
 
 	test_task11( );
+
+	test_task12( );
 }

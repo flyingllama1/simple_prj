@@ -80,6 +80,10 @@ int task11( matrix_t *mat ) {
 	return ret;
 }
 
+void task12( matrix_t *mat ) {
+	swapPenultimateRow( mat );
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }

@@ -77,6 +77,4 @@ int countEqClassesByRowsSum( matrix_t mat );
 
 int getNSpecialElement( matrix_t mat );
 
-matpos_t getLeftMin( matrix_t mat );
-
-void swapPenultimateRow( matrix_t mat, int n );
+void swapPenultimateRow( matrix_t *mat );

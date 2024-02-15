@@ -471,10 +471,12 @@ int getNSpecialElement( matrix_t mat ) {
 	return ret;
 }
 
-matpos_t getLeftMin( matrix_t mat ) {
+void swapPenultimateRow( matrix_t *mat ) {
+	matpos_t pos = getMinValuePos( *mat );
 
-}
+	int temp = mat->m_values[ mat->m_rows - ( mat->m_rows - 1u ) ][ pos.m_col - 1u ];
+	for ( size_t i = 0u; i < mat->m_cols; ++i )
+		mat->m_values[ mat->m_rows - 2u ][ i ] = mat->m_values[ i ][ pos.m_col - 1u ];
 
-void swapPenultimateRow( matrix_t mat, int n ) {
-
+	mat->m_values[ mat->m_rows - 2u ][ 1u ] = temp;
 }
