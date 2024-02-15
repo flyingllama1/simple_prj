@@ -54,3 +54,5 @@ matpos_t getMaxValuePos( matrix_t mat );
 matrix_t createMatrixFromArray( const int *array, int rows, int cols );
 
 matrix_t *createMatrixOfFromArray( const int *values, int matrices, int rows, int cols );
+
+void sortRowsByMinElement( matrix_t mat );

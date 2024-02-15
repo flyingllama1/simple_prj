@@ -247,3 +247,11 @@ matrix_t *createMatrixOfFromArray( const int *values, int matrices, int rows, in
 
 	return ms;
 }
+
+int getMax( int *a, int n ) {
+
+}
+
+void sortRowsByMinElement( matrix_t mat ) {
+
+}
