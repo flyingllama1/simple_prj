@@ -451,5 +451,30 @@ int countEqClassesByRowsSum( matrix_t mat ) {
 	qsort( values, mat.m_rows, sizeof( long long ), cmp_long_long );
 	
 	return countNUnique( values, mat.m_rows );
+}
+
+int getNSpecialElement( matrix_t mat ) {
+	int ret = 0;
+
+	for ( size_t i = 0u; i < mat.m_cols; ++i ) {
+		int sum = 0;
+		for ( size_t j = 0u; j < mat.m_rows; ++j ) {
+			sum += mat.m_values[ j ][ i ];
+		}
+
+		for ( size_t j = 0u; j < mat.m_rows; ++j ) {
+			if ( mat.m_values[ j ][ i ] > ( sum - mat.m_values[ j ][ i ] ) )
+				++ret;
+		}
+	}
+
+	return ret;
+}
+
+matpos_t getLeftMin( matrix_t mat ) {
+
+}
+
+void swapPenultimateRow( matrix_t mat, int n ) {
 
 }

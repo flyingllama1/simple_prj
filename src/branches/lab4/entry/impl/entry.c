@@ -74,6 +74,12 @@ int task10( matrix_t *mat ) {
 	return ret;
 }
 
+int task11( matrix_t *mat ) {
+	int ret = getNSpecialElement( *mat );
+
+	return ret;
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }

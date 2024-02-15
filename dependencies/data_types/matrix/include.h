@@ -74,3 +74,9 @@ void insertionSortRowsMatrixByRowCriteriaF( matrix_t mat, float ( *criteria )( i
 void sortByDistances( matrix_t *mat );
 
 int countEqClassesByRowsSum( matrix_t mat );
+
+int getNSpecialElement( matrix_t mat );
+
+matpos_t getLeftMin( matrix_t mat );
+
+void swapPenultimateRow( matrix_t mat, int n );

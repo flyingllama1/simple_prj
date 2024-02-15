@@ -272,6 +272,20 @@ void test_task10( ) {
 	assert( ret == 3 );
 }
 
+void test_task11( ) {
+	matrix_t mat = createMatrixFromArray(
+		( int[ ] ) {
+			3, 5, 5, 4,
+			2, 3, 6, 7,
+			12, 2, 1, 2
+		}, 3, 4
+	);
+
+	int ret = task11( &mat );
+
+	assert( ret == 2 );
+}
+
 void test_matrix_content( ) {
 	test_task01( );
 
@@ -298,4 +312,6 @@ void test_matrix_content( ) {
 	test_task09( );
 
 	test_task10( );
+
+	test_task11( );
 }
