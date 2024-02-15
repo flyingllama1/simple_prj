@@ -16,4 +16,6 @@ void test_task06A( );
 
 void test_task06B( );
 
+void test_task07( );
+
 void test_matrix_content( );

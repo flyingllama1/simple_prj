@@ -358,3 +358,27 @@ int isMutuallyInverseMatrices( matrix_t m1, matrix_t m2 ) {
 
 	return 1;
 }
+
+long long findSumOfMaxesOfPseudoDiagonal( matrix_t mat ) {
+	for ( size_t i = 0u; i < mat.m_rows; ++i )
+		mat.m_values[ i ][ i ] = 0;
+
+	long long ret = 0ll;
+	for ( size_t i = 0u; i < mat.m_cols + mat.m_rows - 1u; ++i ) {
+		int row = max2( 0, mat.m_rows - i - 1 );
+		int col = max2( 0, i - mat.m_rows + 1 );
+
+		int max_value = INT_MIN;
+		while ( row < mat.m_rows
+			&& col < mat.m_cols ) {
+			max_value = max2( max_value, mat.m_values[ row ][ col ] );
+			
+			++row;
+			++col;
+		}
+
+		ret += max_value;
+	}
+
+	return ret;
+}

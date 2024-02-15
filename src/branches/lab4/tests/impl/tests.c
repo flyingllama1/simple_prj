@@ -189,6 +189,20 @@ void test_task06B( ) {
 	assert( ret == 0 );
 }
 
+void test_task07( ) {
+	matrix_t mat = createMatrixFromArray(
+		( int[ ] ) {
+			3, 2, 5, 4,
+			1, 3, 6, 3,
+			3, 2, 1, 2
+		}, 3, 4
+	);
+
+	long long ans = task07( &mat );
+
+	assert( ans == 20 );
+}
+
 void test_matrix_content( ) {
 	test_task01( );
 
@@ -205,4 +219,6 @@ void test_matrix_content( ) {
 	test_task06A( );
 	
 	test_task06B( );
+
+	test_task07( );
 }

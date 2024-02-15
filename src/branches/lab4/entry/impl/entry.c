@@ -54,6 +54,10 @@ int task06( matrix_t *m1, matrix_t *m2 ) {
 	return ret;
 }
 
+long long task07( matrix_t *mat ) {
+	return findSumOfMaxesOfPseudoDiagonal( *mat );
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }
