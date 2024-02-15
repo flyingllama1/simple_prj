@@ -311,3 +311,31 @@ matrix_t mulMatrices( matrix_t *m1, matrix_t *m2 ) {
 
 	return res;
 }
+
+int isUnique( long long *a, int n ) {
+	for ( size_t i = 0u; i < n; ++i )
+		for ( size_t j = i + 1u; j < n; ++j )
+			if ( a[ i ] == a[ j ] )
+				return 0;
+
+	return 1;
+}
+
+long long getLongSum( int *a, int n ) {
+	long long res = 0ll;
+
+	for ( size_t i = 0; i < n; ++i )
+		res += a[ i ];
+
+	return res;
+}
+
+void transposeIfMatrixHasNotEqualSumOfRows( matrix_t *mat ) {
+	long long *values = ( long long * )malloc( sizeof( long long ) * mat->m_rows );
+	for ( size_t i = 0u; i < mat->m_rows; ++i )
+		values[ i ] = getLongSum( mat->m_values[ i ], mat->m_cols );
+
+	if ( isUnique( values, mat->m_rows ) ) {
+		transposeMatrix( mat );
+	}
+}

@@ -44,6 +44,10 @@ void task04( matrix_t *mat, matrix_t *res ) {
 		*res = *mat;
 }
 
+void task05( matrix_t *mat ) {
+	transposeIfMatrixHasNotEqualSumOfRows( mat );
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }

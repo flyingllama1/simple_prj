@@ -10,4 +10,6 @@ void task03( matrix_t *mat );
 
 void task04( matrix_t *mat, matrix_t *res );
 
+void task05( matrix_t *mat );
+
 void run_branch( );
