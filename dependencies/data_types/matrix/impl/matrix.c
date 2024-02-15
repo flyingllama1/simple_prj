@@ -5,6 +5,8 @@
 
 #include <algorithm/include.h>
 
+#include <exceptions/include.h>
+
 #include <limits.h>
 
 matrix_t getMemMatrix( int rows, int cols ) {
@@ -288,4 +290,24 @@ void sortColsByMinElement( matrix_t mat ) {
 				iswap( &mat.m_values[ j ][ max ], &mat.m_values[ j ][ i ] );
 		}
 	}
+}
+
+matrix_t mulMatrices( matrix_t *m1, matrix_t *m2 ) {
+	if ( m1->m_cols != m2->m_rows ) {
+		STD_ERROR_N_EXIT( mulMatrices, "the operation cannot be performed with the resulting matrices." );
+	}
+
+	matrix_t res = getMemMatrix( m1->m_rows, m2->m_cols );
+	//memset( res.m_values, 0, sizeof( int ) * res.m_rows * res.m_cols );
+
+	for ( size_t i = 0u; i < res.m_rows; ++i ) {
+		for ( size_t j = 0u; j < res.m_cols; ++j ) {
+			res.m_values[ i ][ j ] = 0;
+			for ( size_t k = 0u; k < m1->m_cols; ++k ) {
+				res.m_values[ i ][ j ] += m1->m_values[ i ][ k ] * m2->m_values[ k ][ j ];
+			}
+		}
+	}
+
+	return res;
 }

@@ -37,6 +37,13 @@ void task03( matrix_t *mat ) {
 	sortColsByMinElement( *mat );
 }
 
+void task04( matrix_t *mat, matrix_t *res ) {
+	if ( isSymmetricMatrix( mat ) )
+		*res = mulMatrices( mat, mat );
+	else
+		*res = *mat;
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }

@@ -58,3 +58,5 @@ matrix_t *createMatrixOfFromArray( const int *values, int matrices, int rows, in
 void sortRowsByMinElement( matrix_t mat );
 
 void sortColsByMinElement( matrix_t mat );
+
+matrix_t mulMatrices( matrix_t *m1, matrix_t *m2 );
