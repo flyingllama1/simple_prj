@@ -4,6 +4,8 @@
 
 #include "../../tests/include.h"
 
+#include <algorithm/include.h>
+
 void task01( matrix_t *mat ) {
 	int min_val = mat->m_values[ 0 ][ 0 ];
 	int max_val = mat->m_values[ 0 ][ 0 ];
@@ -28,7 +30,7 @@ void task01( matrix_t *mat ) {
 }
 
 void task02( matrix_t *mat ) {
-
+	sortRowsByMinElement( *mat );
 }
 
 void run_branch( ) {

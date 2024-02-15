@@ -59,6 +59,19 @@ int getMaxElementIndexInArray( int *const n, const size_t size ) {
     return index;
 }
 
+int getMinElementIndexInArray( int *const n, const size_t size ) {
+    int min = n[ 0 ];
+    int index = 0;
+    for ( int i = 1; i < size; ++i ) {
+        if ( min > n[ i ] ) {
+            min = n[ i ];
+            index = i;
+        }
+    }
+
+    return index;
+}
+
 void ascan( int *array, const size_t size ) {
     for ( size_t i = 0u; i < size; ++i )
         scanf( "%d", &array[ i ] );
