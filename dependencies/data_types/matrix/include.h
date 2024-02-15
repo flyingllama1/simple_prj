@@ -69,6 +69,8 @@ long long findSumOfMaxesOfPseudoDiagonal( matrix_t mat );
 
 int getMinInArea( matrix_t mat );
 
-float getDistance( int *a, int n );
-void insertionSortRowsMatrixByRowCriteriaF( matrix_t m, float ( *criteria )( int *, int ) );
-void sortByDistances( matrix_t m );
+void insertionSortRowsMatrixByRowCriteriaF( matrix_t mat, float ( *criteria )( int *, int ) );
+
+void sortByDistances( matrix_t *mat );
+
+int countEqClassesByRowsSum( matrix_t mat );

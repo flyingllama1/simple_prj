@@ -18,4 +18,8 @@ long long task07( matrix_t *mat );
 
 int task08( matrix_t *mat );
 
+void task09( matrix_t *mat );
+
+int task10( matrix_t *mat );
+
 void run_branch( );

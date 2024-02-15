@@ -397,3 +397,59 @@ int getMinInArea( matrix_t mat ) {
 
 	return res;
 }
+
+void insertionSortRowsMatrixByRowCriteriaF( matrix_t mat, float ( *criteria )( int *, int ) ) {
+	float *values = malloc( sizeof( int ) * mat.m_rows );
+	for ( size_t i = 0u; i < mat.m_rows; ++i )
+		values[ i ] = criteria( mat.m_values[ i ], mat.m_cols );
+
+	for ( size_t i = 1u; i < mat.m_rows; ++i ) {
+		float key = values[ i ];
+		int j = i - 1;
+		while ( key < values[ j ] && j >= 0 ) {
+			values[ j + 1 ] = values[ j ];
+			swapRows( mat, j + 1, j );
+			--j;
+		}
+
+		values[ j + 1 ] = key;
+	}
+}
+
+void sortByDistances( matrix_t *mat ) {
+	insertionSortRowsMatrixByRowCriteriaF( *mat, getDistance );
+}
+
+int cmp_long_long( const void *a, const void *b ) {
+	return *( const int * )a - *( const int * )b;
+}
+
+int countNUnique( long long *array, const size_t size ) {
+	int count = 1;
+	
+	long long record = array[ 0 ];
+	for ( size_t i = 1; i < size; ++i ) {
+		if ( array[ i ] != record ) {
+			++count;
+			record = array[ i ];
+		}
+	}
+
+	return count;
+}
+
+int countEqClassesByRowsSum( matrix_t mat ) {
+	long long *values = ( long long * )malloc( sizeof( long long ) * mat.m_rows );
+	for ( size_t i = 0u; i < mat.m_rows; ++i ) {
+		long long sum = 0ll;
+		for ( size_t j = 0u; j < mat.m_cols; ++j )
+			sum += mat.m_values[ i ][ j ];
+
+		values[ i ] = sum;
+	}
+
+	qsort( values, mat.m_rows, sizeof( long long ), cmp_long_long );
+	
+	return countNUnique( values, mat.m_rows );
+
+}

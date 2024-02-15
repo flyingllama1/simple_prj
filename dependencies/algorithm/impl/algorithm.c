@@ -2,6 +2,7 @@
 
 #include <memory.h>
 #include <malloc.h>
+#include <math.h>
 
 int min2( const int a, const int b ) {
     return a > b ? b : a;
@@ -99,4 +100,12 @@ void aprint( const int *array, const size_t size ) {
         printf( "%d ", array[ i ] );
 
     printf( "%d\n" );
+}
+
+float getDistance( const int *array, const size_t size ) {
+    float ret = 0.f;
+    for ( size_t i = 0u; i < size; ++i )
+        ret += ( array[ i ] * array[ i ] );
+
+    return sqrtf( ret );
 }

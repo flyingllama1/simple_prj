@@ -64,6 +64,16 @@ int task08( matrix_t *mat ) {
 	return ret;
 }
 
+void task09( matrix_t *mat ) {
+	sortByDistances( mat );
+}
+
+int task10( matrix_t *mat ) {
+	int ret = countEqClassesByRowsSum( *mat );
+
+	return ret;
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }
