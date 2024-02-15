@@ -24,3 +24,5 @@ void ascan( int *array, const size_t size );
 void aprint( const int *array, const size_t size );
 
 float getDistance( const int *array, const size_t size );
+
+int isNonDescendingSorted( const int *array, const size_t size );

@@ -109,3 +109,12 @@ float getDistance( const int *array, const size_t size ) {
 
     return sqrtf( ret );
 }
+
+int isNonDescendingSorted( const int *array, const size_t size ) {
+    for ( size_t i = 1u; i < size; ++i ) {
+        if ( array[ i ] < array[ i - 1 ] )
+            return 0;
+    }
+
+    return 1;
+}

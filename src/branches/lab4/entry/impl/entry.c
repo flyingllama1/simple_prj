@@ -84,6 +84,12 @@ void task12( matrix_t *mat ) {
 	swapPenultimateRow( mat );
 }
 
+int task13( matrix_t *mat, const size_t matrices_amount ) {
+	int ret = countNonDescendingRowsMatrices( mat, matrices_amount );
+
+	return ret;
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }

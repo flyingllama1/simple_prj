@@ -26,4 +26,6 @@ int task11( matrix_t *mat );
 
 void task12( matrix_t *mat );
 
+int task13( matrix_t *mat, const size_t matrices_amount );
+
 void run_branch( );

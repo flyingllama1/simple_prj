@@ -78,3 +78,7 @@ int countEqClassesByRowsSum( matrix_t mat );
 int getNSpecialElement( matrix_t mat );
 
 void swapPenultimateRow( matrix_t *mat );
+
+int hasAllNonDescendingRows( matrix_t mat );
+
+int countNonDescendingRowsMatrices( matrix_t *ms, int matrices_amount );

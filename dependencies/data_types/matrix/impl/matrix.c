@@ -25,7 +25,7 @@ matrix_t getMemMatrix( int rows, int cols ) {
 matrix_t *getMemArrayOfMatrices( int matrices, int rows, int cols ) {
 	matrix_t *ms = ( matrix_t * )malloc( sizeof( matrix_t ) * matrices );
 	for ( size_t i = 0u; i < matrices; ++i )
-		ms[ 0 ] = getMemMatrix( rows, cols );
+		ms[ i ] = getMemMatrix( rows, cols );
 
 	return ms;
 }
@@ -479,4 +479,21 @@ void swapPenultimateRow( matrix_t *mat ) {
 		mat->m_values[ mat->m_rows - 2u ][ i ] = mat->m_values[ i ][ pos.m_col - 1u ];
 
 	mat->m_values[ mat->m_rows - 2u ][ 1u ] = temp;
+}
+
+int hasAllNonDescendingRows( matrix_t mat ) {
+	for ( size_t i = 0u; i < mat.m_rows; ++i )
+		if ( !isNonDescendingSorted( mat.m_values[ i ], mat.m_cols ) )
+			return 0;
+
+	return 1;
+}
+
+int countNonDescendingRowsMatrices( matrix_t *ms, int matrices_amount ) {
+	int ret = 0;
+	for ( size_t i = 0u; i < matrices_amount; ++i )
+		if ( hasAllNonDescendingRows( ms[ i ] ) )
+			++ret;
+
+	return ret;
 }
