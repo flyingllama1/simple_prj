@@ -382,3 +382,18 @@ long long findSumOfMaxesOfPseudoDiagonal( matrix_t mat ) {
 
 	return ret;
 }
+
+int getMinInArea( matrix_t mat ) {
+	matpos_t max = getMaxValuePos( mat );
+
+	int res = INT_MAX;
+	for ( size_t i = 0u; i < max.m_row; ++i ) {
+		for ( size_t j = 0u; j < max.m_col; ++j ) {
+			if ( abs( max.m_col - j ) <= abs( max.m_row - i ) ) {
+				res = min2( res, mat.m_values[ i ][ j ] );
+			}
+		}
+	}
+
+	return res;
+}

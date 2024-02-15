@@ -16,4 +16,6 @@ int task06( matrix_t *m1, matrix_t *m2 );
 
 long long task07( matrix_t *mat );
 
+int task08( matrix_t *mat );
+
 void run_branch( );

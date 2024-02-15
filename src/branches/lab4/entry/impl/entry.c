@@ -58,6 +58,12 @@ long long task07( matrix_t *mat ) {
 	return findSumOfMaxesOfPseudoDiagonal( *mat );
 }
 
+int task08( matrix_t *mat ) {
+	int ret = getMinInArea( *mat );
+
+	return ret;
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }

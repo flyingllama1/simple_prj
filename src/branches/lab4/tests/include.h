@@ -18,4 +18,8 @@ void test_task06B( );
 
 void test_task07( );
 
+void test_task08A( );
+
+void test_task08B( );
+
 void test_matrix_content( );

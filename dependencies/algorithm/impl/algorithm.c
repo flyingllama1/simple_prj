@@ -3,6 +3,10 @@
 #include <memory.h>
 #include <malloc.h>
 
+int min2( const int a, const int b ) {
+    return a > b ? b : a;
+}
+
 int max2( const int a, const int b ) {
     return a > b ? a : b;
 }

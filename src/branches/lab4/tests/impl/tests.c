@@ -203,6 +203,34 @@ void test_task07( ) {
 	assert( ans == 20 );
 }
 
+void test_task08A( ) {
+	matrix_t mat = createMatrixFromArray(
+		( int[ ] ) {
+			10, 7, 5, 6,
+			3, 11, 8, 9,
+			4, 1, 12, 2
+		}, 3, 4
+	);
+
+	int ret = getMinInArea( mat );
+
+	assert( ret == 5 );
+}
+
+void test_task08B( ) {
+	matrix_t mat = createMatrixFromArray(
+		( int[ ] ) {
+			6, 8, 9, 2,
+			7, 12, 3, 4,
+			10, 11, 5, 1
+		}, 3, 4
+	);
+
+	int ret = getMinInArea( mat );
+
+	assert( ret == 6 );
+}
+
 void test_matrix_content( ) {
 	test_task01( );
 
@@ -221,4 +249,8 @@ void test_matrix_content( ) {
 	test_task06B( );
 
 	test_task07( );
+
+	test_task08A( );
+
+	test_task08B( );
 }

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <assert.h>
 
+int min2( const int a, const int b );
+
 int max2( const int a, const int b );
 
 size_t binsrch( const int *array, const size_t size, const int x );
@@ -20,3 +22,5 @@ int getMinElementIndexInArray( int *const array, const size_t size );
 void ascan( int *array, const size_t size );
 
 void aprint( const int *array, const size_t size );
+
+float getDistance( const int *array, const size_t size );

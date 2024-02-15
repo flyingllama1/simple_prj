@@ -66,3 +66,9 @@ void transposeIfMatrixHasNotEqualSumOfRows( matrix_t *mat );
 int isMutuallyInverseMatrices( matrix_t m1, matrix_t m2 );
 
 long long findSumOfMaxesOfPseudoDiagonal( matrix_t mat );
+
+int getMinInArea( matrix_t mat );
+
+float getDistance( int *a, int n );
+void insertionSortRowsMatrixByRowCriteriaF( matrix_t m, float ( *criteria )( int *, int ) );
+void sortByDistances( matrix_t m );
