@@ -352,7 +352,50 @@ void test_task14( ) {
 		3, 2
 	);
 
-	task14( ms, 4 );
+	printf(
+		"task14:\n"
+		"expected result:\n"
+		"0 0\n"
+		"0 0\n"
+		"4 7\n"
+		"0 0\n"
+		"1 0\n"
+		"0 0\n"
+		"algorithm result:\n"
+	);
+
+	task14( ms, 4u );
+
+	printf( "\n" );
+}
+
+void test_task15( ) {
+	matrix_t *ms = createMatrixOfFromArray(
+		( int[ ] ) {
+			1, 3,
+			5, 2,
+			2, 4,
+			6, 8,
+			4, 1,
+			9, 1,
+			2, 2,
+			2, 2
+		},
+		4, 
+		2, 2
+	);
+
+	printf(
+		"task15:\n"
+		"expected result:\n"
+		"2 2\n"
+		"2 2\n"
+		"algorithm result:\n"
+	);
+
+	task15( ms, 4u );
+
+	printf( "\n" );
 }
 
 void test_matrix_content( ) {
@@ -389,4 +432,6 @@ void test_matrix_content( ) {
 	test_task13( );
 
 	test_task14( );
+
+	test_task15( );
 }

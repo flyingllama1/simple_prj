@@ -524,3 +524,31 @@ void printMatrixWithMaxZeroRows( matrix_t *ms, int matrices_amount ) {
 			outputMatrix( ms[ i ] );
 	}
 }
+
+int getMatrixNorm( const matrix_t mat ) {
+	int ret = 0;
+	for ( size_t i = 0u; i < mat.m_rows; ++i ) {
+		for ( size_t j = 0u; j < mat.m_cols; ++j ) {
+			int norm = abs( mat.m_values[ i ][ j ] );
+			ret = max2( ret, norm );
+		}
+	}
+
+	return ret;
+}
+void printMatrixWithMinNorm( matrix_t *ms, int matrices_amount ) {
+	int min_norm = INT_MAX;
+
+	for ( size_t i = 0u; i < matrices_amount; ++i ) {
+		int norm = getMatrixNorm( ms[ i ] );
+
+		min_norm = min2( min_norm, norm );
+	}
+
+	for ( size_t i = 0u; i < matrices_amount; ++i ) {
+		int norm = getMatrixNorm( ms[ i ] );
+
+		if ( norm == min_norm )
+			outputMatrix( ms[ i ] );
+	}
+}
