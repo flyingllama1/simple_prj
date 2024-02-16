@@ -4,6 +4,8 @@
 #include <malloc.h>
 #include <math.h>
 
+#include <exceptions/include.h>
+
 int min2( const int a, const int b ) {
     return a > b ? b : a;
 }
@@ -126,4 +128,25 @@ int countValues( const int *array, const size_t size, const int value ) {
             ++ret;
 
     return ret;
+}
+
+double getScalarProduct( int *a, int *b, int n ) {
+    double ret = 0;
+    for ( int i = 0; i < n; i++ ) {
+        ret += ( a[ i ] * b[ i ] );
+    }
+
+    return ret;
+}
+
+double getCosine( int *a, int *b, int n ) {
+    double product = getScalarProduct( a, b, n );
+    float a_len = getDistance( a, n );
+    float b_len = getDistance( b, n );
+
+    if ( ( a_len * b_len ) == 0 ) {
+        STD_ERROR_N_EXIT( getCosine, "can`t process division by zero." );
+    }
+    
+    return product / ( a_len * b_len );
 }

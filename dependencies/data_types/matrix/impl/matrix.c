@@ -7,7 +7,7 @@
 
 #include <exceptions/include.h>
 
-#include <limits.h>
+#include <float.h>
 
 matrix_t getMemMatrix( int rows, int cols ) {
 	matrix_t mat;
@@ -571,6 +571,22 @@ int getNSpecialElement2( matrix_t mat ) {
 			if ( is_increasing && is_decreasing ) {
 				++ret;
 			}
+		}
+	}
+
+	return ret;
+}
+
+int getVectorIndexWithMaxAngle( matrix_t mat, int *b ) {
+	int ret = INT_MIN;
+
+	double max_ang = DBL_MIN;
+	for ( size_t i = 0u; i < mat.m_rows; ++i ) {
+		double ang = getCosine( b, mat.m_values[ i ], mat.m_cols );
+
+		if ( ang > max_ang ) {
+			ret = i;
+			max_ang = ang;
 		}
 	}
 

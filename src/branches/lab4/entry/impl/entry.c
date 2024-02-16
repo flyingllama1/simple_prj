@@ -102,6 +102,10 @@ int task16( matrix_t *mat ) {
 	return getNSpecialElement2( *mat );
 }
 
+int task17( matrix_t *mat, int *b ) {
+	return getVectorIndexWithMaxAngle( *mat, b );
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }

@@ -28,3 +28,7 @@ float getDistance( const int *array, const size_t size );
 int isNonDescendingSorted( const int *array, const size_t size );
 
 int countValues( const int *array, const size_t size, const int value );
+
+double getScalarProduct( int *a, int *b, int n );
+
+double getCosine( int *a, int *b, int n );
