@@ -552,3 +552,27 @@ void printMatrixWithMinNorm( matrix_t *ms, int matrices_amount ) {
 			outputMatrix( ms[ i ] );
 	}
 }
+
+int getNSpecialElement2( matrix_t mat ) {
+	int ret = 0;
+	for ( size_t i = 0u; i < mat.m_rows; ++i ) {
+		for ( size_t j = 0u; j < mat.m_cols; ++j ) {
+			int is_decreasing = 1;
+			int is_increasing = 1;
+			for ( size_t k = 0u; k < mat.m_cols; ++k ) {
+				if ( k > j
+					&& mat.m_values[ i ][ j ] > mat.m_values[ i ][ k ] )
+					is_increasing = 0;
+				if ( k < j
+					&& mat.m_values[ i ][ j ] < mat.m_values[ i ][ k ] )
+					is_decreasing = 0;
+			}
+
+			if ( is_increasing && is_decreasing ) {
+				++ret;
+			}
+		}
+	}
+
+	return ret;
+}

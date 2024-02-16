@@ -398,6 +398,20 @@ void test_task15( ) {
 	printf( "\n" );
 }
 
+void test_task16( ) {
+	matrix_t mat = createMatrixFromArray(
+		( int[ ] ) {
+			2, 3, 5, 5, 4,
+			6, 2, 3, 8, 12,
+			12, 12, 2, 1, 2
+		}, 3, 5
+	);
+
+	int ret = task16( &mat );
+
+	assert( ret == 4 );
+}
+
 void test_matrix_content( ) {
 	test_task01( );
 
@@ -434,4 +448,6 @@ void test_matrix_content( ) {
 	test_task14( );
 
 	test_task15( );
+
+	test_task16( );
 }

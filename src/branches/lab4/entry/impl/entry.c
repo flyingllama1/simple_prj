@@ -98,6 +98,10 @@ void task15( matrix_t *mat, const size_t matrices_amount ) {
 	printMatrixWithMinNorm( mat, matrices_amount );
 }
 
+int task16( matrix_t *mat ) {
+	return getNSpecialElement2( *mat );
+}
+
 void run_branch( ) {
 	test_matrix_content( );
 }
