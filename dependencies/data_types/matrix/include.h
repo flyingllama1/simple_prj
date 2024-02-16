@@ -94,3 +94,7 @@ void printMatrixWithMinNorm( matrix_t *ms, int matrices_amount );
 int getNSpecialElement2( matrix_t mat );
 
 int getVectorIndexWithMaxAngle( matrix_t mat, int *b );
+
+long long getScalarProductRowAndCol( matrix_t mat, int row, int col );
+
+long long getSpecialScalarProduct( matrix_t mat );

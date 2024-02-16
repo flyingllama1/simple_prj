@@ -444,6 +444,34 @@ void test_task17B( ) {
 	assert( ret == 0 );
 }
 
+void test_task18A( ) {
+	matrix_t mat = createMatrixFromArray(
+		( int[ ] ) {
+			1, 2, 3,
+			4, 5, 6,
+			7, 8, 9
+		}, 3, 3
+	);
+
+	long long ret = task18( &mat );
+
+	assert( ret == 102 );
+}
+
+void test_task18B( ) {
+	matrix_t mat = createMatrixFromArray(
+		( int[ ] ) {
+			1, 4, 7,
+			2, 5, 8,
+			3, 6, 9
+		}, 3, 3
+	);
+
+	long long ret = task18( &mat );
+
+	assert( ret == 42 );
+}
+
 void test_matrix_content( ) {
 	test_task01( );
 
@@ -486,4 +514,8 @@ void test_matrix_content( ) {
 	test_task17A( );
 
 	test_task17B( );
+
+	test_task18A( );
+
+	test_task18B( );
 }

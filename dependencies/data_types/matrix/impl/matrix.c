@@ -592,3 +592,24 @@ int getVectorIndexWithMaxAngle( matrix_t mat, int *b ) {
 
 	return ret;
 }
+
+long long getScalarProductRowAndCol( matrix_t mat, int row, int col ) {
+	long long ret = 0ll;
+
+	for ( size_t i = 0u; i < mat.m_cols; ++i )
+		ret += ( mat.m_values[ row ][ i ] * mat.m_values[ i ][ col ] );
+
+	return ret;
+}
+
+long long getSpecialScalarProduct( matrix_t mat, int n ) {
+	matpos_t min = getMinValuePos( mat );
+	matpos_t max = getMaxValuePos( mat );
+
+	min.m_row -= 1;
+	min.m_col -= 1;
+	max.m_row -= 1;
+	max.m_col -= 1;
+
+	return getScalarProductRowAndCol( mat, max.m_row, min.m_col );
+}
