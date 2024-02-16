@@ -118,3 +118,12 @@ int isNonDescendingSorted( const int *array, const size_t size ) {
 
     return 1;
 }
+
+int countValues( const int *array, const size_t size, const int value ) {
+    int ret = 0;
+    for ( size_t i = 0u; i < size; ++i )
+        if ( array[ i ] == value )
+            ++ret;
+
+    return ret;
+}

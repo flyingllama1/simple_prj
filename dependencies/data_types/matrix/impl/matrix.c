@@ -497,3 +497,30 @@ int countNonDescendingRowsMatrices( matrix_t *ms, int matrices_amount ) {
 
 	return ret;
 }
+
+int countZeroRows( matrix_t mat ) {
+	int ret = 0;
+	for ( size_t i = 0u; i < mat.m_rows; ++i ) {
+		int amt = countValues( mat.m_values[ i ], mat.m_cols, 0 );
+		if ( amt == mat.m_cols )
+			++ret;
+	}
+
+	return ret;
+}
+
+void printMatrixWithMaxZeroRows( matrix_t *ms, int matrices_amount ) {
+	int max_rows = INT_MIN;
+
+	for ( size_t i = 0u; i < matrices_amount; ++i ) {
+		int amt = countZeroRows( ms[ i ] );
+		
+		max_rows = max2( max_rows, amt );
+	}
+
+	for ( size_t i = 0u; i < matrices_amount; ++i ) {
+		int amt = countZeroRows( ms[ i ] );
+		if ( amt == max_rows )
+			outputMatrix( ms[ i ] );
+	}
+}

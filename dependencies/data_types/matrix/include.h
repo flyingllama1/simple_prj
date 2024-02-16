@@ -82,3 +82,7 @@ void swapPenultimateRow( matrix_t *mat );
 int hasAllNonDescendingRows( matrix_t mat );
 
 int countNonDescendingRowsMatrices( matrix_t *ms, int matrices_amount );
+
+int countZeroRows( matrix_t mat );
+
+void printMatrixWithMaxZeroRows( matrix_t *ms, int matrices_amount );

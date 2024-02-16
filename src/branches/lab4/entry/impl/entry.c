@@ -90,6 +90,11 @@ int task13( matrix_t *mat, const size_t matrices_amount ) {
 	return ret;
 }
 
+void task14( matrix_t *mat, const size_t matrices_amount ) {
+	printMatrixWithMaxZeroRows( mat, matrices_amount );
+}
+
+
 void run_branch( ) {
 	test_matrix_content( );
 }

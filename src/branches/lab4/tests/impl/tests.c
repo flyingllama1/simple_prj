@@ -329,6 +329,32 @@ void test_task13( ) {
 	assert( ret == 2 );
 }
 
+void test_task14( ) {
+	matrix_t *ms = createMatrixOfFromArray(
+		( int[ ] ) {
+			0, 1,
+			1, 0,
+			0, 0,
+			1, 1,
+			2, 1,
+			1, 1,
+			0, 0,
+			0, 0,
+			4, 7,
+			0, 0,
+			1, 0,
+			0, 0,
+			0, 1,
+			0, 2,
+			0, 3,
+		}, 
+		4, 
+		3, 2
+	);
+
+	task14( ms, 4 );
+}
+
 void test_matrix_content( ) {
 	test_task01( );
 
@@ -361,4 +387,6 @@ void test_matrix_content( ) {
 	test_task12( );
 
 	test_task13( );
+
+	test_task14( );
 }

@@ -26,3 +26,5 @@ void aprint( const int *array, const size_t size );
 float getDistance( const int *array, const size_t size );
 
 int isNonDescendingSorted( const int *array, const size_t size );
+
+int countValues( const int *array, const size_t size, const int value );
