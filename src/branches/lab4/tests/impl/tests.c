@@ -212,7 +212,7 @@ void test_task08A( ) {
 		}, 3, 4
 	);
 
-	int ret = getMinInArea( mat );
+	int ret = task08( &mat );
 
 	assert( ret == 5 );
 }
@@ -226,7 +226,7 @@ void test_task08B( ) {
 		}, 3, 4
 	);
 
-	int ret = getMinInArea( mat );
+	int ret = task08( &mat );
 
 	assert( ret == 6 );
 }
