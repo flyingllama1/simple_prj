@@ -21,3 +21,7 @@ char *strcpy_( const char *beginSource, const char *endSource, char *beginDestin
 char *copyIf( char *beginSource, const char *endSource, char *beginDestination, int ( *f )( int ) );
 
 char *copyIfReverse( char *rbeginSource, const char *rendSource, char *beginDestination, int ( *f )( int ) );
+
+void removeAdjacentEqualLetters( char *str );
+
+void removeExtraSpaces( char *str );

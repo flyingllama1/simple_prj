@@ -91,3 +91,38 @@ char *copyIfReverse( char *rbeginSource, const char *rendSource, char *beginDest
 
 	return rbegin_dst;
 }
+
+void removeAdjacentEqualLetters( char *str ) {
+	if ( *str != '\0' ) {
+		str++;
+	}
+
+	char *readbuf = str;
+	while ( *readbuf != '\0' ) {
+		if ( *readbuf != *( --str ) )
+			*( ++str ) = *readbuf;
+
+		++str;
+		++readbuf;
+	}
+
+	*str = '\0';
+}
+
+void removeExtraSpaces( char *str ) {
+	char *readbuf = str;
+	while ( *readbuf != '\0' ) {
+		if ( isspace( *readbuf ) ) {
+			char *wbuf = str;
+			if ( !isspace( *( wbuf-- ) ) ) {
+				*( ++str ) = *readbuf;
+			}
+		}
+		else
+			*( ++str ) = *readbuf;
+
+		++readbuf;
+	}
+
+	*( ++str ) = '\0';
+}

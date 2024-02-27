@@ -10,4 +10,6 @@ include ("src/branches/lab4/CMakeLists.txt")
 
 include ("src/branches/lab5/CMakeLists.txt")
 
-set (src_branch ${src_branch_4})
+include ("src/branches/lab6/CMakeLists.txt")
+
+set (src_branch ${src_branch_5})

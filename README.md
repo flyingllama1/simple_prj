@@ -9,4 +9,8 @@
 
 **"branches//lab4" / "src_branch_3"** - Laboratory W. ¹19.16.
 
+**"branches//lab5" / "src_branch_4"** - Laboratory W. ¹19.17.
+
+**"branches//lab6" / "src_branch_5"** - Laboratory W. ¹19.18.
+
 <img src="https://github.com/flyingllama1/simple_prj/blob/main/important.gif?raw=true" height="256">
