@@ -8,4 +8,6 @@ void test_wordDescriptor( );
 
 void test_replaceDigitsWithSpaces( );
 
+void test_replaceWordsInString( );
+
 void test_lab_content( );

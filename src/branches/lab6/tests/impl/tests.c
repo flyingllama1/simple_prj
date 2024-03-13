@@ -48,6 +48,20 @@ void test_replaceDigitsWithSpaces( ) {
 	ASSERT_STRING( "a b", s );
 }
 
+void test_replaceWordsInString( ) {
+	char *a = "aaa bless";
+	replaceWordsInString( a, "aaa", "dog" );
+	ASSERT_STRING( "dog bless", a );
+
+	char *b = "aaaaaa drain makes aaaaaa powerful";
+	replaceWordsInString( b, "aaaaaa", "monki" );
+	ASSERT_STRING( "monki drain makes monki powerful", b );
+
+	char *c = "Z likes bananas";
+	replaceWordsInString( c, "Z", "monki" );
+	ASSERT_STRING( "monki likes bananas", c );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -56,4 +70,6 @@ void test_lab_content( ) {
 	test_wordDescriptor( );
 
 	test_replaceDigitsWithSpaces( );
+
+	test_replaceWordsInString( );
 }

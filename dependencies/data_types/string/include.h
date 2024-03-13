@@ -27,6 +27,8 @@ int strcmp_( const char *lhs, const char *rhs );
 
 char *strcpy_( const char *beginSource, const char *endSource, char *beginDestination );
 
+char *strcpyz_( const char *beginSource, char *beginDestination, const size_t size );
+
 char *copyIf( char *beginSource, const char *endSource, char *beginDestination, int ( *f )( int ) );
 
 char *copyIfReverse( char *rbeginSource, const char *rendSource, char *beginDestination, int ( *f )( int ) );
@@ -54,3 +56,7 @@ void digitToEndReversedLetterToStart( char *str );
 void digitToStartLetterToEnd( char *str );
 
 void replaceDigitsWithSpaces( char *str );
+
+int areWordsEqual( WordDescriptor_t a, WordDescriptor_t b );
+
+void replaceWordsInString( char *src, char *w1, char *w2 );

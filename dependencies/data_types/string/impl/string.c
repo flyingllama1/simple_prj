@@ -211,9 +211,62 @@ void replaceDigitsWithSpaces( char *str ) {
 				( *readbuf )--;
 			}
 		}
-			
+		
 		++readbuf;
 	}
 
 	*str = '\0';
+}
+
+int areWordsEqual( WordDescriptor_t a, WordDescriptor_t b ) {
+	char *rb1 = a.m_begin;
+	char *rb2 = b.m_begin;
+
+	while ( ( *rb1 != ' ' || *rb2 != ' ' )
+		&& ( *rb1 != '\0' && *rb2 != '\0' ) ) {
+		if ( *rb1 != *rb2
+			&& ( *rb1 != '\0' && *rb2 != '\0' ) )
+			return 0;
+
+		++rb1;
+		++rb2;
+	}
+
+	return rb1 == a.m_end && rb2 == b.m_end;
+}
+
+void replaceWordsInString( char *src, char *w1, char *w2 ) {
+	size_t s1 = strlen_( w1 );
+	size_t s2 = strlen_( w2 );
+
+	WordDescriptor_t wo1 = { w1, w1 + s1 };
+	WordDescriptor_t wo2 = { w2, w2 + s2 };
+
+	WordDescriptor_t word;
+
+	char *readbuf = src;
+	char *recbuf = src;
+
+	char buf[ MAX_STRING_SIZE ];
+	if ( s2 > s1 ) {
+		strcpy_( src, src + strlen_( src ), buf );
+		readbuf = buf;
+		recbuf = src;
+	}
+
+	while ( getWord( readbuf, &word ) ) {
+		WordDescriptor_t res = wo2;
+		if ( !areWordsEqual( word, wo1 ) )
+			res = word;
+
+		for ( char *c = res.m_begin; c != res.m_end; ++c ) {
+			*recbuf++ = *c;
+		}
+		
+		*recbuf++ = ' ';
+
+		readbuf = word.m_end;
+	}
+
+	*( recbuf - 1u ) = '\0';
 }
