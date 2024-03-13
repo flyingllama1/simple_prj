@@ -1,5 +1,7 @@
 #include "../include.h"
 
+#include <assert.h>
+
 #include <exceptions/include.h>
 
 #include <string/include.h>
@@ -62,6 +64,16 @@ void test_replaceWordsInString( ) {
 	ASSERT_STRING( "monki likes bananas", c );
 }
 
+void test_areWordsOrdered( ) {
+	char *a = "walter white";
+	int za = areWordsOrdered( a );
+	assert( za == 0 );
+
+	char *b = "w w";
+	int zb = areWordsOrdered( b );
+	assert( zb == 1 );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -72,4 +84,6 @@ void test_lab_content( ) {
 	test_replaceDigitsWithSpaces( );
 
 	test_replaceWordsInString( );
+
+	test_areWordsOrdered( );
 }

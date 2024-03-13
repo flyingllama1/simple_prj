@@ -270,3 +270,23 @@ void replaceWordsInString( char *src, char *w1, char *w2 ) {
 
 	*( recbuf - 1u ) = '\0';
 }
+
+int areWordsOrdered( char *src ) {
+	WordDescriptor_t a, b;
+	if ( getWord( src, &a ) ) {
+		b = a;
+		src = a.m_end;
+		while ( getWord( src, &a ) ) {
+			if ( !areWordsEqual( a, b ) )
+				return 0;
+
+			b = a;
+			src = a.m_end;
+		}
+
+		return 1;
+	}
+	else {
+		return 1;
+	}
+}

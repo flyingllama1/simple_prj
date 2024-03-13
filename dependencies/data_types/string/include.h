@@ -60,3 +60,5 @@ void replaceDigitsWithSpaces( char *str );
 int areWordsEqual( WordDescriptor_t a, WordDescriptor_t b );
 
 void replaceWordsInString( char *src, char *w1, char *w2 );
+
+int areWordsOrdered( char *src );
