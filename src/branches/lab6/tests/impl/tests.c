@@ -37,10 +37,23 @@ void test_wordDescriptor( ) {
 	digitToStartLetterToEnd( a );
 	ASSERT_STRING( "321abc", a );
 }
+
+void test_replaceDigitsWithSpaces( ) {
+	char *t = "a2b";
+	replaceDigitsWithSpaces( t );
+	ASSERT_STRING( "a  b", t );
+
+	char *s = "a10b";
+	replaceDigitsWithSpaces( s );
+	ASSERT_STRING( "a b", s );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
 	test_removeExtraSpaces( );
 
 	test_wordDescriptor( );
+
+	test_replaceDigitsWithSpaces( );
 }

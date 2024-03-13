@@ -52,3 +52,5 @@ void digitToEndLetterToStart( char *str );
 void digitToEndReversedLetterToStart( char *str );
 
 void digitToStartLetterToEnd( char *str );
+
+void replaceDigitsWithSpaces( char *str );

@@ -193,3 +193,27 @@ void digitToStartLetterToEnd( char *str ) { // 3(3)
 		readbuf = word.m_end;
 	}
 }
+
+void replaceDigitsWithSpaces( char *str ) {
+	char _stringBuffer[ MAX_STRING_SIZE + 1 ];
+	char *end = str + strlen_( str );
+	char *readbuf = _stringBuffer;
+	char *endbuf = strcpy_( str, end, readbuf );
+
+	while ( *readbuf != '\0' ) {
+		if ( isalpha( *readbuf ) )
+			*str++ = *readbuf;
+		else {
+			// 2 -> 210 -> 21 skip zero.
+			while ( isdigit( *readbuf ) 
+				&& *readbuf != '0' ) {
+				*str++ = ' ';
+				( *readbuf )--;
+			}
+		}
+			
+		++readbuf;
+	}
+
+	*str = '\0';
+}
