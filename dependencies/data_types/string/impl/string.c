@@ -78,7 +78,7 @@ char *copyIf( char *beginSource, const char *endSource, char *beginDestination, 
 
 char *copyIfReverse( char *rbeginSource, const char *rendSource, char *beginDestination, int ( *f )( int ) ) {
 	char *rbegin_dst = beginDestination;
-	while ( rbeginSource >= rendSource ) {
+	while ( *rbeginSource >= -1 && *rbeginSource <= 255 && rbeginSource >= rendSource ) {
 		if ( f( *rbeginSource ) ) {
 			*rbegin_dst = *rbeginSource;
 			++rbegin_dst;
@@ -125,4 +125,71 @@ void removeExtraSpaces( char *str ) {
 	}
 
 	*( ++str ) = '\0';
+}
+
+int getWord( char *beginSearch, WordDescriptor_t *word ) {
+	word->m_begin = findNonSpace( beginSearch );
+	if ( *word->m_begin == '\0' )
+		return 0;
+
+	word->m_end = findSpace( word->m_begin );
+
+	return 1;
+}
+
+void digitToEnd( WordDescriptor_t word ) {
+	char _stringBuffer[ MAX_STRING_SIZE + 1 ];
+	char *endStringBuffer = strcpy_( word.m_begin, word.m_end,
+		_stringBuffer );
+
+	char *recPosition = copyIf( _stringBuffer, endStringBuffer, word.m_begin, isalpha );
+	copyIf( _stringBuffer, endStringBuffer, recPosition, isdigit );
+}
+
+void digitToEndReversed( WordDescriptor_t word ) {
+	char _stringBuffer[ MAX_STRING_SIZE + 1 ];
+	char *endStringBuffer = strcpy_( word.m_begin, word.m_end,
+		_stringBuffer );
+
+	char *recPosition = copyIf( _stringBuffer, endStringBuffer, word.m_begin, isalpha );
+	copyIfReverse( endStringBuffer, _stringBuffer, recPosition, isdigit );
+}
+
+void digitToStart( WordDescriptor_t word ) {
+	char _stringBuffer[ MAX_STRING_SIZE + 1 ];
+	char *endStringBuffer = strcpy_( word.m_begin, word.m_end,
+		_stringBuffer );
+
+	char *recPosition = copyIf( _stringBuffer, endStringBuffer, word.m_begin, isdigit );
+	copyIf( _stringBuffer, endStringBuffer, recPosition, isalpha );
+}
+
+void digitToEndLetterToStart( char *str ) { // 3(1)
+	WordDescriptor_t word;
+
+	char *readbuf = str;
+	while ( getWord( readbuf, &word ) ) {
+		digitToEnd( word );
+		readbuf = word.m_end;
+	}
+}
+
+void digitToEndReversedLetterToStart( char *str ) { // 3(2)
+	WordDescriptor_t word;
+
+	char *readbuf = str;
+	while ( getWord( readbuf, &word ) ) {
+		digitToEndReversed( word );
+		readbuf = word.m_end;
+	}
+}
+
+void digitToStartLetterToEnd( char *str ) { // 3(3)
+	WordDescriptor_t word;
+	
+	char *readbuf = str;
+	while ( getWord( readbuf, &word ) ) {
+		digitToStart( word );
+		readbuf = word.m_end;
+	}
 }

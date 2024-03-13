@@ -28,8 +28,19 @@ void test_removeAdjacentEqualLetters( ) {
 	ASSERT_STRING( "god job ", c );
 }
 
+void test_wordDescriptor( ) {
+	char *a = "a1b2c3";
+	digitToEndLetterToStart( a );
+	ASSERT_STRING( "abc123", a );
+	digitToEndReversedLetterToStart( a );
+	ASSERT_STRING( "abc321", a );
+	digitToStartLetterToEnd( a );
+	ASSERT_STRING( "321abc", a );
+}
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
 	test_removeExtraSpaces( );
+
+	test_wordDescriptor( );
 }
