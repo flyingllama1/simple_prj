@@ -609,3 +609,32 @@ void deletePalindromeWordsFromString( char *str ) {
 
 	strcpy_( dst, dst + len, str );
 }
+
+void expandSmallerString( char *s1, char *s2 ) {
+	BagOfWords_t b1, b2;
+	getBagOfWords( &b1, s1 );
+	getBagOfWords( &b2, s2 );
+
+	if ( b1.m_size > b2.m_size ) {
+		char *begin = s2 + strlen_( s2 );
+		*begin++ = ' ';
+		for ( size_t i = b2.m_size; i < b1.m_size; ++i ) {
+			for ( char *c = b1.m_words[ i ].m_begin; c != b1.m_words[ i ].m_end; ++c )
+				*begin++ = *c;
+			*begin++ = ' ';
+		}
+
+		*--begin = '\0';
+	}
+	else if ( b1.m_size < b2.m_size ) {
+		char *begin = s1 + strlen_( s1 );
+		*begin++ = ' ';
+		for ( size_t i = b1.m_size; i < b2.m_size; ++i ) {
+			for ( char *c = b2.m_words[ i ].m_begin; c != b2.m_words[ i ].m_end; ++c )
+				*begin++ = *c;
+			*begin++ = ' ';
+		}
+
+		*--begin = '\0';
+	}
+}

@@ -115,3 +115,5 @@ void getStringWithoutWordsSimilarLastWord( char *str );
 WordPrecedingFirstCommonWordReturnCode WordPrecedingFirstCommonWord_Status( char *s1, char *s2, WordDescriptor_t *word );
 
 void deletePalindromeWordsFromString( char *str );
+
+void expandSmallerString( char *s1, char *s2 );

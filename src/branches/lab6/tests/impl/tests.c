@@ -204,9 +204,21 @@ void test_deletePalindromeWordsFromString( ) {
 	ASSERT_STRING( "dodo odod", c );
 }
 
+void test_expandSmallerString( ) {
+	char *s1 = "a aa b";
+	char *s2 = "b bb a d c";
+
+	expandSmallerString( s1, s2 );
+	ASSERT_STRING( "a aa b d c", s1 );
+
+	char *s3 = "a e ff i z j jj q";
+	expandSmallerString( s3, s2 );
+	ASSERT_STRING( "b bb a d c j jj q", s2 );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
-
+	 
 	test_removeExtraSpaces( );
 
 	test_wordDescriptor( );
@@ -236,4 +248,6 @@ void test_lab_content( ) {
 	test_WordPrecedingFirstCommonWord_Status( );
 
 	test_deletePalindromeWordsFromString( );
+
+	test_expandSmallerString( );
 }

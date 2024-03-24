@@ -32,4 +32,6 @@ void test_WordPrecedingFirstCommonWord_Status( );
 
 void test_deletePalindromeWordsFromString( );
 
+void test_expandSmallerString( );
+
 void test_lab_content( );
