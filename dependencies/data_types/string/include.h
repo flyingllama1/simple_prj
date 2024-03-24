@@ -69,3 +69,7 @@ void replaceWordsInString( char *src, char *w1, char *w2 );
 int areWordsOrdered( char *src );
 
 void getBagOfWords( BagOfWords_t *bag, char *s );
+
+int isWordPalindrome( char *begin, char *end );
+
+size_t countPalindromeWords( char *str );

@@ -12,4 +12,6 @@ void test_replaceWordsInString( );
 
 void test_areWordsOrdered( );
 
+void test_countPalindromeWords( );
+
 void test_lab_content( );

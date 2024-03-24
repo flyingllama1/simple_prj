@@ -302,3 +302,42 @@ void getBagOfWords( BagOfWords_t *bag, char *s ) {
 		s = word.m_end;
 	}
 }
+
+int isWordPalindrome( char *begin, char *end ) {
+	--end; // avoid '\0' char.
+
+	while ( end > begin ) {
+		if ( *begin != *end )
+			return 0;
+
+		++begin;
+		--end;
+	}
+
+	return 1;
+}
+
+size_t countPalindromeWords( char *str ) {
+	char *begin = findNonSpace( str );
+	char *end = str + strlen_( str );
+	char *li = strfind( begin, end, ',' );
+
+	int is_final_word = *li == '\0' && end > begin;
+
+	size_t ret = 0u;
+	while ( *li != '\0'
+		|| is_final_word ) {
+		ret += isWordPalindrome( begin, li );
+		if ( is_final_word )
+			break;
+
+		if ( end <= begin )
+			break;
+
+		begin = findNonSpace( li + 1 );
+		li = strfind( begin, end, ',' );
+		is_final_word = *li == '\0' && end > begin;
+	}
+
+	return ret;
+}

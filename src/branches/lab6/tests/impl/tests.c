@@ -77,6 +77,20 @@ void test_areWordsOrdered( ) {
 	assert( zb == 1 );
 }
 
+void test_countPalindromeWords( ) {
+	char *a = "333, sf";
+	size_t za = countPalindromeWords( a );
+	assert( za == 1u );
+
+	char *b = "";
+	size_t zb = countPalindromeWords( b );
+	assert( zb == 0u );
+
+	char *c = " fuuuuf, drg, eeeeee";
+	size_t zc = countPalindromeWords( c );
+	assert( zc == 2u );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -89,4 +103,6 @@ void test_lab_content( ) {
 	test_replaceWordsInString( );
 
 	test_areWordsOrdered( );
+
+	test_countPalindromeWords( );
 }
