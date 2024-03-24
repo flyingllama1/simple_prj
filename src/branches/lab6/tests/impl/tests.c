@@ -168,6 +168,28 @@ void test_getStringWithoutWordsSimilarLastWord( ) {
 	ASSERT_STRING( "monki flip", c );
 }
 
+void test_WordPrecedingFirstCommonWord_Status( ) {
+	char *s1 = "god bless i have monki bot";
+	char *s2 = "monki chase moneytalk";
+	char *s3 = "monki drain";
+
+	char dst[ MAX_STRING_SIZE ];
+	WordDescriptor_t word;
+	size_t status = WordPrecedingFirstCommonWord_Status( s1, s2, &word );
+
+	getWordData( word, dst );
+	ASSERT_STRING( "have", dst );
+	assert( status == wpWORD_FOUND );
+
+	assert( WordPrecedingFirstCommonWord_Status( s2, s3, NULL ) == wpFIRST_WORD_IS_COMMON );
+
+	char *s4 = "";
+	assert( WordPrecedingFirstCommonWord_Status( s3, s4, NULL ) == wpEMPTY_STRING );
+
+	char *s5 = "dota 2 beta";
+	assert( WordPrecedingFirstCommonWord_Status( s3, s5, NULL ) == wpNOT_FOUND_COMMON_WORD );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -196,4 +218,6 @@ void test_lab_content( ) {
 	test_hasWordsWithSimilarAlphabet( );
 
 	test_getStringWithoutWordsSimilarLastWord( );
+
+	test_WordPrecedingFirstCommonWord_Status( );
 }

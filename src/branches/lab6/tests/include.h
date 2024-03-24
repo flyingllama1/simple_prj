@@ -28,4 +28,6 @@ void test_hasWordsWithSimilarAlphabet( );
 
 void test_getStringWithoutWordsSimilarLastWord( );
 
+void test_WordPrecedingFirstCommonWord_Status( );
+
 void test_lab_content( );

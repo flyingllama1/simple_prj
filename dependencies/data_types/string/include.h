@@ -23,6 +23,13 @@ typedef enum WordBeforeFirstWordWithAReturnCode {
 	EMPTY_STRING
 } WordBeforeFirstWordWithAReturnCode;
 
+typedef enum WordPrecedingFirstCommonWordReturnCode {
+	wpFIRST_WORD_IS_COMMON,
+	wpNOT_FOUND_COMMON_WORD,
+	wpWORD_FOUND,
+	wpEMPTY_STRING,
+} WordPrecedingFirstCommonWordReturnCode;
+
 size_t strlen_( const char *begin );
 
 char *strfind( char *begin, char *end, char ch );
@@ -104,3 +111,5 @@ int hasSimilarAlphabet( char *s1, char *s2 );
 int hasWordsWithSimilarAlphabet( char *str );
 
 void getStringWithoutWordsSimilarLastWord( char *str );
+
+WordPrecedingFirstCommonWordReturnCode WordPrecedingFirstCommonWord_Status( char *s1, char *s2, WordDescriptor_t *word );

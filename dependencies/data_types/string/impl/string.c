@@ -563,3 +563,28 @@ void getStringWithoutWordsSimilarLastWord( char *str ) {
 
 	strcpy_( dst, dst + len, str );
 }
+
+WordPrecedingFirstCommonWordReturnCode WordPrecedingFirstCommonWord_Status( char *s1, char *s2, WordDescriptor_t *word ) {
+	if ( *s1 == '\0' || *s2 == '\0' )
+		return wpEMPTY_STRING;
+
+	BagOfWords_t b1, b2;
+	getBagOfWords( &b1, s1 );
+	getBagOfWords( &b2, s2 );
+
+	for ( size_t i = 0u; i < b1.m_size; ++i ) {
+		for ( size_t j = 0u; j < b2.m_size; ++j ) {
+			if ( areWordsEqual( b1.m_words[ i ], b2.m_words[ j ] ) ) {
+				if ( word != NULL )
+					*word = i == 0 ? b1.m_words[ i ] : b1.m_words[ i - 1u ];
+				
+				if ( i == 0u )
+					return wpFIRST_WORD_IS_COMMON;
+				else
+					return wpWORD_FOUND;
+			}
+		}
+	}
+
+	return wpNOT_FOUND_COMMON_WORD;
+}
