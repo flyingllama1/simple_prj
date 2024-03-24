@@ -216,6 +216,14 @@ void test_expandSmallerString( ) {
 	ASSERT_STRING( "b bb a d c j jj q", s2 );
 }
 
+void test_isStringContainsAlphabet( ) {
+	assert( isStringContainsAlphabet( "idhgfjkhgfsdhuosdfuoh", "foh" ) );
+	assert( isStringContainsAlphabet( "a bc e f gh", "aef" ) );
+	assert( !isStringContainsAlphabet( "a bc e f gh", "aefj" ) );
+	assert( !isStringContainsAlphabet( "", "aefj" ) );
+	assert( !isStringContainsAlphabet( "asedrf", "" ) );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 	 
@@ -250,4 +258,6 @@ void test_lab_content( ) {
 	test_deletePalindromeWordsFromString( );
 
 	test_expandSmallerString( );
+
+	test_isStringContainsAlphabet( );
 }

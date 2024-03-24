@@ -34,4 +34,6 @@ void test_deletePalindromeWordsFromString( );
 
 void test_expandSmallerString( );
 
+void test_isStringContainsAlphabet( );
+
 void test_lab_content( );

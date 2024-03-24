@@ -638,3 +638,24 @@ void expandSmallerString( char *s1, char *s2 ) {
 		*--begin = '\0';
 	}
 }
+
+int isStringContainsAlphabet( char *str, char *wo ) {
+	if ( strlen_( wo ) == 0u )
+		return 0;
+
+	size_t power = strlen_( str );
+	for ( size_t j = 0u; j < strlen_( wo ); ++j ) {
+		if ( isspace( wo[ j ] ) )
+			continue;
+
+		int is_included_in_alp = 0;
+		for ( size_t i = 0u; i < power; ++i )
+			if ( str[ i ] == wo[ j ] )
+				is_included_in_alp = 1;
+
+		if ( !is_included_in_alp )
+			return 0;
+	}
+
+	return 1;
+}

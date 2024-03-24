@@ -117,3 +117,5 @@ WordPrecedingFirstCommonWordReturnCode WordPrecedingFirstCommonWord_Status( char
 void deletePalindromeWordsFromString( char *str );
 
 void expandSmallerString( char *s1, char *s2 );
+
+int isStringContainsAlphabet( char *str, char *wo );
