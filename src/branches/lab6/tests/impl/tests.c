@@ -190,6 +190,20 @@ void test_WordPrecedingFirstCommonWord_Status( ) {
 	assert( WordPrecedingFirstCommonWord_Status( s3, s5, NULL ) == wpNOT_FOUND_COMMON_WORD );
 }
 
+void test_deletePalindromeWordsFromString( ) {
+	char *a = "monki flip yayay";
+	deletePalindromeWordsFromString( a );
+	ASSERT_STRING( "monki flip", a );
+
+	char *b = "monki yyy flip";
+	deletePalindromeWordsFromString( b );
+	ASSERT_STRING( "monki flip", b );
+	
+	char *c = "dodo odod";
+	deletePalindromeWordsFromString( c );
+	ASSERT_STRING( "dodo odod", c );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -220,4 +234,6 @@ void test_lab_content( ) {
 	test_getStringWithoutWordsSimilarLastWord( );
 
 	test_WordPrecedingFirstCommonWord_Status( );
+
+	test_deletePalindromeWordsFromString( );
 }

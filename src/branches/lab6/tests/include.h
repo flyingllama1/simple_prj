@@ -30,4 +30,6 @@ void test_getStringWithoutWordsSimilarLastWord( );
 
 void test_WordPrecedingFirstCommonWord_Status( );
 
+void test_deletePalindromeWordsFromString( );
+
 void test_lab_content( );

@@ -588,3 +588,24 @@ WordPrecedingFirstCommonWordReturnCode WordPrecedingFirstCommonWord_Status( char
 
 	return wpNOT_FOUND_COMMON_WORD;
 }
+
+void deletePalindromeWordsFromString( char *str ) {
+	char dst[ MAX_STRING_SIZE ];
+	size_t len = 0u;
+
+	BagOfWords_t bag;
+	getBagOfWords( &bag, str );
+
+	for ( size_t i = 0u; i < bag.m_size; ++i ) {
+		if ( !isWordPalindrome( bag.m_words[ i ].m_begin, bag.m_words[ i ].m_end ) ) {
+			for ( char *c = bag.m_words[ i ].m_begin; c != bag.m_words[ i ].m_end; ++c )
+				dst[ len++ ] = *c;
+
+			dst[ len++ ] = ' ';
+		}
+	}
+
+	dst[ len-- ] = '\0';
+
+	strcpy_( dst, dst + len, str );
+}
