@@ -18,4 +18,6 @@ void test_joinWords( );
 
 void test_reverseWordsOrder( );
 
+void test_getWordBeforeFirstWordWithA_Status( );
+
 void test_lab_content( );

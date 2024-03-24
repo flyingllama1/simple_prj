@@ -1,5 +1,7 @@
 #include "../include.h"
 
+#include <stdio.h>
+
 size_t strlen_( const char *begin ) {
 	char *end = begin;
 	while ( *end != '\0' )
@@ -395,4 +397,59 @@ void reverseWordsOrder( char *str ) {
 
 	dst[ j++ ] = '\0';
 	strcpy_( dst, dst + j, str );
+}
+
+int isWordContainsChar( WordDescriptor_t word, char ch ) {
+	for ( char *c = word.m_begin; c != word.m_end; ++c )
+		if ( *c == ch )
+			return 1;
+
+	return 0;
+}
+
+WordBeforeFirstWordWithAReturnCode getWordBeforeFirstWordWithA_Status( char *str ) {
+	if ( *str == '\0' )
+		return EMPTY_STRING;
+
+	char *begin = str;
+
+	WordDescriptor_t word, track = { NULL };
+	while ( getWord( str, &word ) ) {
+		if ( isWordContainsChar( word, 'A' )
+			|| isWordContainsChar( word, 'a' ) ) {
+			if ( track.m_begin == NULL )
+				return FIRST_WORD_WITH_A;
+			else
+				return WORD_FOUND;
+		}
+
+		track = word;
+		str = word.m_end;
+	}
+
+	return NOT_FOUND_A_WORD_WITH_A;
+}
+
+void printWordBeforeFirstWordWithA( char *str ) {
+	if ( *str == '\0' )
+		return;
+
+	char *begin = str;
+
+	WordDescriptor_t word, track = { NULL };
+	while ( getWord( str, &word ) ) {
+		if ( isWordContainsChar( word, 'A' )
+			|| isWordContainsChar( word, 'a' ) ) {
+			if ( track.m_begin == NULL )
+				for ( char *c = word.m_begin; c != word.m_end; ++c )
+					printf( "%c", *c );
+			else
+				for ( char *c = track.m_begin; c != track.m_end; ++c )
+					printf( "%c", *c );
+			printf( "\n" );
+		}
+
+		track = word;	
+		str = word.m_end;
+	}
 }

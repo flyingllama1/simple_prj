@@ -119,6 +119,20 @@ void test_reverseWordsOrder( ) {
 	ASSERT_STRING( "monkiflip", c );
 }
 
+void test_getWordBeforeFirstWordWithA_Status( ) {
+	char *a = "";
+	assert( getWordBeforeFirstWordWithA_Status( a ) == EMPTY_STRING );
+	
+	char *b = "a monki";
+	assert( getWordBeforeFirstWordWithA_Status( b ) == FIRST_WORD_WITH_A );
+
+	char *c = "monke hate drugs";
+	assert( getWordBeforeFirstWordWithA_Status( c ) == WORD_FOUND );
+
+	char *d = "monki trust you";
+	assert( getWordBeforeFirstWordWithA_Status( d ) == NOT_FOUND_A_WORD_WITH_A );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -137,4 +151,6 @@ void test_lab_content( ) {
 	test_joinWords( );
 
 	test_reverseWordsOrder( );
+
+	test_getWordBeforeFirstWordWithA_Status( );
 }
