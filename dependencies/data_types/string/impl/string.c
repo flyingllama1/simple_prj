@@ -503,3 +503,38 @@ int hasSameWords( char *str ) {
 
 	return 0;
 }
+
+int hasSimilarAlphabet( char *s1, char *s2 ) {
+	int a1[ 26u ] = { 0 };
+	int a2[ 26u ] = { 0 };
+
+	for ( size_t i = 0u; i < strlen_( s1 ); ++i )
+		a1[ s1[ i ] - 'a' ] = 1;
+
+	for ( size_t i = 0u; i < strlen_( s2 ); ++i )
+		a2[ s2[ i ] - 'a' ] = 1;
+
+	for ( size_t i = 0u; i < 26u; ++i )
+		if ( a1[ i ] != a2[ i ] )
+			return 0;
+
+	return 1;
+}
+
+int hasWordsWithSimilarAlphabet( char *str ) {
+	BagOfWords_t bag;
+	getBagOfWords( &bag, str );
+
+	for ( size_t i = 0u; i < bag.m_size; ++i ) {
+		for ( size_t j = i + 1u; j < bag.m_size; ++j ) {
+			char w1[ MAX_STRING_SIZE ], w2[ MAX_STRING_SIZE ];
+			getWordData( bag.m_words[ i ], w1 );
+			getWordData( bag.m_words[ j ], w2 );
+
+			if ( hasSimilarAlphabet( w1, w2 ) )
+				return 1;
+		}
+	}
+
+	return 0;
+}

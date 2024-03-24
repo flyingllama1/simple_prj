@@ -24,4 +24,6 @@ void test_lastWordInFirstStringInSecondString( );
 
 void test_hasSameWords( );
 
+void test_hasWordsWithSimilarAlphabet( );
+
 void test_lab_content( );

@@ -98,3 +98,7 @@ int isWordInBagOfWords( WordDescriptor_t word, BagOfWords_t bag );
 char *lastWordInFirstStringInSecondString( char *s1, char *s2 );
 
 int hasSameWords( char *str );
+
+int hasSimilarAlphabet( char *s1, char *s2 );
+
+int hasWordsWithSimilarAlphabet( char *str );

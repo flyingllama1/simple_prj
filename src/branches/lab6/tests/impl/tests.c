@@ -147,6 +147,13 @@ void test_hasSameWords( ) {
 	assert( !hasSameWords( "a" ) );
 }
 
+void test_hasWordsWithSimilarAlphabet( ) {
+	assert( hasWordsWithSimilarAlphabet( "aab aabb" ) );
+	assert( !hasWordsWithSimilarAlphabet( "aab dc" ) );
+	assert( !hasWordsWithSimilarAlphabet( "" ) );
+	assert( hasWordsWithSimilarAlphabet( "abc bca" ) );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -171,4 +178,6 @@ void test_lab_content( ) {
 	test_lastWordInFirstStringInSecondString( );
 
 	test_hasSameWords( );
+
+	test_hasWordsWithSimilarAlphabet( );
 }
