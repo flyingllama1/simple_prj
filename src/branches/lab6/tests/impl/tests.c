@@ -6,6 +6,9 @@
 
 #include <string/include.h>
 
+BagOfWords_t _bag1;
+BagOfWords_t _bag2;
+
 void test_removeExtraSpaces( ) {
 	char *a = "   good  job  ";
 	removeExtraSpaces( a );

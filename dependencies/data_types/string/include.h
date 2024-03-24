@@ -11,6 +11,11 @@ typedef struct WordDescriptor {
 	char *m_end;
 } WordDescriptor_t;
 
+typedef struct BagOfWords {
+	WordDescriptor_t	m_words[ MAX_N_WORDS_IN_STRING ];
+	size_t				m_size;
+} BagOfWords_t;
+
 size_t strlen_( const char *begin );
 
 char *strfind( char *begin, char *end, char ch );
@@ -62,3 +67,5 @@ int areWordsEqual( WordDescriptor_t a, WordDescriptor_t b );
 void replaceWordsInString( char *src, char *w1, char *w2 );
 
 int areWordsOrdered( char *src );
+
+void getBagOfWords( BagOfWords_t *bag, char *s );

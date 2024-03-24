@@ -290,3 +290,15 @@ int areWordsOrdered( char *src ) {
 		return 1;
 	}
 }
+
+void getBagOfWords( BagOfWords_t *bag, char *s ) {
+	WordDescriptor_t word;
+
+	bag->m_size = 0u;
+	while ( getWord( s, &word ) ) {
+		bag->m_words[ bag->m_size ] = word;
+		++bag->m_size;
+
+		s = word.m_end;
+	}
+}
