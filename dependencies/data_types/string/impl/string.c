@@ -538,3 +538,28 @@ int hasWordsWithSimilarAlphabet( char *str ) {
 
 	return 0;
 }
+
+void getStringWithoutWordsSimilarLastWord( char *str ) {
+	char dst[ MAX_STRING_SIZE ];
+	size_t len = 0u;
+
+	BagOfWords_t bag;
+	getBagOfWords( &bag, str );
+	if ( !bag.m_size )
+		return;
+
+	WordDescriptor_t comp = bag.m_words[ bag.m_size - 1u ];
+	for ( size_t i = 0u; i < bag.m_size - 1u; ++i ) {
+		if ( !areWordsEqual( bag.m_words[ i ], comp ) ) {
+			for ( char *c = bag.m_words[ i ].m_begin; c != bag.m_words[ i ].m_end; ++c ) {
+				dst[ len++ ] = *c;
+			}
+
+			dst[ len++ ] = ' ';
+		}
+	}
+
+	dst[ len-- ] = '\0';
+
+	strcpy_( dst, dst + len, str );
+}

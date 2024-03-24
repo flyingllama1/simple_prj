@@ -102,3 +102,5 @@ int hasSameWords( char *str );
 int hasSimilarAlphabet( char *s1, char *s2 );
 
 int hasWordsWithSimilarAlphabet( char *str );
+
+void getStringWithoutWordsSimilarLastWord( char *str );

@@ -26,4 +26,6 @@ void test_hasSameWords( );
 
 void test_hasWordsWithSimilarAlphabet( );
 
+void test_getStringWithoutWordsSimilarLastWord( );
+
 void test_lab_content( );

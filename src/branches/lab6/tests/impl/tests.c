@@ -154,6 +154,20 @@ void test_hasWordsWithSimilarAlphabet( ) {
 	assert( hasWordsWithSimilarAlphabet( "abc bca" ) );
 }
 
+void test_getStringWithoutWordsSimilarLastWord( ) {
+	char *a = "a b c d a";
+	getStringWithoutWordsSimilarLastWord( a );
+	ASSERT_STRING( "b c d", a );
+
+	char *b = "";
+	getStringWithoutWordsSimilarLastWord( b );
+	ASSERT_STRING( "", b );
+
+	char *c = "monki flip bananas";
+	getStringWithoutWordsSimilarLastWord( c );
+	ASSERT_STRING( "monki flip", c );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -180,4 +194,6 @@ void test_lab_content( ) {
 	test_hasSameWords( );
 
 	test_hasWordsWithSimilarAlphabet( );
+
+	test_getStringWithoutWordsSimilarLastWord( );
 }
