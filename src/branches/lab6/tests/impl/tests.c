@@ -133,6 +133,12 @@ void test_getWordBeforeFirstWordWithA_Status( ) {
 	assert( getWordBeforeFirstWordWithA_Status( d ) == NOT_FOUND_A_WORD_WITH_A );
 }
 
+void test_lastWordInFirstStringInSecondString( ) {
+	ASSERT_STRING( "D", lastWordInFirstStringInSecondString( "A B C D", "C D E F" ) );
+	ASSERT_STRING( "C", lastWordInFirstStringInSecondString( "A B C D", "C G E F" ) );
+	ASSERT_STRING( "", lastWordInFirstStringInSecondString( "A B C D", "E F G H" ) );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -153,4 +159,6 @@ void test_lab_content( ) {
 	test_reverseWordsOrder( );
 
 	test_getWordBeforeFirstWordWithA_Status( );
+
+	test_lastWordInFirstStringInSecondString( );
 }

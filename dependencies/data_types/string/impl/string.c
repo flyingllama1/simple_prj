@@ -453,3 +453,41 @@ void printWordBeforeFirstWordWithA( char *str ) {
 		str = word.m_end;
 	}
 }
+
+void getWordData( WordDescriptor_t word, char *dst ) {
+	for ( char *c = word.m_begin; c != word.m_end; ++c )
+		*dst++ = *c;
+
+	*dst = '\0';
+}
+
+int isWordInBagOfWords( WordDescriptor_t word, BagOfWords_t bag ) {
+	char wdata[ MAX_STRING_SIZE ],
+		_data[ MAX_STRING_SIZE ];
+	getWordData( word, wdata );
+	for ( size_t i = 0; i < bag.m_size; ++i ) {
+		getWordData( bag.m_words[ i ], _data );
+		if ( strcmp_( wdata, _data ) == 0 )
+			return 1;
+	}
+
+	return 0;
+}
+
+char *lastWordInFirstStringInSecondString( char *s1, char *s2 ) {
+	BagOfWords_t b1, b2;
+	getBagOfWords( &b1, s1 );
+	getBagOfWords( &b2, s2 );
+
+	char ret[ MAX_STRING_SIZE ];
+	for ( int i = b1.m_size - 1u; i != -1; --i ) {
+		for ( int j = 0; j < b2.m_size; ++j ) {
+			if ( isWordInBagOfWords( b1.m_words[ i ], b2 ) ) {
+				getWordData( b1.m_words[ i ], ret );
+				return ret;
+			}
+		}
+	}
+
+	return "";
+}

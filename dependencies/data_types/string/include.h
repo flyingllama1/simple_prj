@@ -90,3 +90,9 @@ int isWordContainsChar( WordDescriptor_t word, char ch );
 WordBeforeFirstWordWithAReturnCode getWordBeforeFirstWordWithA_Status( char *str );
 
 void printWordBeforeFirstWordWithA( char *str );
+
+void getWordData( WordDescriptor_t word, char *dst );
+
+int isWordInBagOfWords( WordDescriptor_t word, BagOfWords_t bag );
+
+char *lastWordInFirstStringInSecondString( char *s1, char *s2 );
