@@ -341,3 +341,37 @@ size_t countPalindromeWords( char *str ) {
 
 	return ret;
 }
+
+void joinWords( char *s1, char *s2, char *res ) {
+	WordDescriptor_t w1, w2;
+
+	int f1, f2;
+	while ( ( f1 = getWord( s1, &w1 ),
+		f2 = getWord( s2, &w2 ) ),
+		f1 ) {
+		if ( f1 ) {
+			for ( char *c = w1.m_begin; c != w1.m_end; ++c ) {
+				*res++ = *c;
+			}
+
+			s1 = w1.m_end;
+			f1 = getWord( s1, &w1 );
+
+			if ( f1 || f2 )
+				*res++ = ' ';
+		}
+		if ( f2 ) {
+			for ( char *c = w2.m_begin; c != w2.m_end; ++c ) {
+				*res++ = *c;
+			}
+
+			s2 = w2.m_end;
+			f2 = getWord( s2, &w2 );
+
+			if ( f1 || f2 )
+				*res++ = ' ';
+		}
+	}
+
+	*res = '\0';
+}

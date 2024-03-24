@@ -91,6 +91,20 @@ void test_countPalindromeWords( ) {
 	assert( zc == 2u );
 }
 
+void test_joinWords( ) {
+	char a[ MAX_STRING_SIZE ];
+	joinWords( "monki like", "just bananas", a );
+	ASSERT_STRING( "monki just like bananas", a );
+
+	char b[ MAX_STRING_SIZE ];
+	joinWords( "amazing flip", "monki", b );
+	ASSERT_STRING( "amazing monki flip", b );
+
+	char c[ MAX_STRING_SIZE ];
+	joinWords( "monki chase my money", "bot", c );
+	ASSERT_STRING( "monki bot chase my money", c );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -105,4 +119,6 @@ void test_lab_content( ) {
 	test_areWordsOrdered( );
 
 	test_countPalindromeWords( );
+
+	test_joinWords( );
 }

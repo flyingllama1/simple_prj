@@ -14,4 +14,6 @@ void test_areWordsOrdered( );
 
 void test_countPalindromeWords( );
 
+void test_joinWords( );
+
 void test_lab_content( );

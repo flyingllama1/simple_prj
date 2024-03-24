@@ -73,3 +73,5 @@ void getBagOfWords( BagOfWords_t *bag, char *s );
 int isWordPalindrome( char *begin, char *end );
 
 size_t countPalindromeWords( char *str );
+
+void joinWords( char *s1, char *s2, char *res );
