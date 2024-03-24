@@ -21,4 +21,7 @@ void test_reverseWordsOrder( );
 void test_getWordBeforeFirstWordWithA_Status( );
 
 void test_lastWordInFirstStringInSecondString( );
+
+void test_hasSameWords( );
+
 void test_lab_content( );

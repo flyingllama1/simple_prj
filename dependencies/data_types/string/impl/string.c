@@ -491,3 +491,15 @@ char *lastWordInFirstStringInSecondString( char *s1, char *s2 ) {
 
 	return "";
 }
+
+int hasSameWords( char *str ) {
+	BagOfWords_t bag;
+	getBagOfWords( &bag, str );
+
+	for ( size_t i = 0u; i < bag.m_size; ++i )
+		for ( size_t j = i + 1u; j < bag.m_size; ++j )
+			if ( areWordsEqual( bag.m_words[ i ], bag.m_words[ j ] ) )
+				return 1;
+
+	return 0;
+}

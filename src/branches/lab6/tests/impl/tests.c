@@ -139,6 +139,14 @@ void test_lastWordInFirstStringInSecondString( ) {
 	ASSERT_STRING( "", lastWordInFirstStringInSecondString( "A B C D", "E F G H" ) );
 }
 
+void test_hasSameWords( ) {
+	assert( hasSameWords( "a a b" ) );
+	assert( !hasSameWords( "a c b" ) );
+
+	assert( !hasSameWords( "" ) );
+	assert( !hasSameWords( "a" ) );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -161,4 +169,6 @@ void test_lab_content( ) {
 	test_getWordBeforeFirstWordWithA_Status( );
 
 	test_lastWordInFirstStringInSecondString( );
+
+	test_hasSameWords( );
 }
