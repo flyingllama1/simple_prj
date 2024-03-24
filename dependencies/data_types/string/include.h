@@ -75,3 +75,5 @@ int isWordPalindrome( char *begin, char *end );
 size_t countPalindromeWords( char *str );
 
 void joinWords( char *s1, char *s2, char *res );
+
+void reverseWordsOrder( char *str );

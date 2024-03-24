@@ -105,6 +105,20 @@ void test_joinWords( ) {
 	ASSERT_STRING( "monki bot chase my money", c );
 }
 
+void test_reverseWordsOrder( ) {
+	char *a = "monki dont lie";
+	reverseWordsOrder( a );
+	ASSERT_STRING( "lie dont monki", a );
+
+	char *b = "";
+	reverseWordsOrder( b );
+	ASSERT_STRING( "", b );
+
+	char *c = "monkiflip";
+	reverseWordsOrder( c );
+	ASSERT_STRING( "monkiflip", c );
+}
+
 void test_lab_content( ) {
 	test_removeAdjacentEqualLetters( );
 
@@ -121,4 +135,6 @@ void test_lab_content( ) {
 	test_countPalindromeWords( );
 
 	test_joinWords( );
+
+	test_reverseWordsOrder( );
 }

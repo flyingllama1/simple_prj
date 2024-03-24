@@ -375,3 +375,24 @@ void joinWords( char *s1, char *s2, char *res ) {
 
 	*res = '\0';
 }
+
+void reverseWordsOrder( char *str ) {
+	char dst[ MAX_STRING_SIZE ];
+	char *begin = str + strlen_( str );
+	char *end = str;
+
+	BagOfWords_t bag;
+	getBagOfWords( &bag, str );
+
+	size_t j = 0u;
+	for ( int i = bag.m_size - 1u; i != -1; --i ) {
+		for ( char *c = bag.m_words[ i ].m_begin; c != bag.m_words[ i ].m_end; ++c )
+			dst[ j++ ] = *c;
+
+		if ( i != 0 )
+			dst[ j++ ] = ' ';
+	}
+
+	dst[ j++ ] = '\0';
+	strcpy_( dst, dst + j, str );
+}
