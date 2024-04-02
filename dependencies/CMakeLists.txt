@@ -12,6 +12,8 @@ file (GLOB_RECURSE src_files_ordered_set ${CMAKE_CURRENT_LIST_DIR}/ordered_set/*
 
 file (GLOB_RECURSE src_files_exceptions ${CMAKE_CURRENT_LIST_DIR}/exceptions/*.[ch])
 
+file (GLOB_RECURSE src_files_fmanager ${CMAKE_CURRENT_LIST_DIR}/file_manager/*.[ch])
+
 set (src_dependencies
 	${src_files_algorithm}
 	${src_files_exceptions}
@@ -19,4 +21,5 @@ set (src_dependencies
 	${src_files_unordered_set}
 	${src_files_ordered_set}
 	${src_data_types}
+	${src_files_fmanager}
 )
