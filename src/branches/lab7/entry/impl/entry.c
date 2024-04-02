@@ -32,6 +32,20 @@ void task01( vdvector_t *ms ) {
 	fclose( file );
 }
 
+void task02( vdvector_t *v ) {
+	FILE *file = fopen( "data/task02.txt", "r" );
+	if ( file == NULL )
+		STD_ERROR( task02, "cannot open file task02.txt" );
+
+	float f;
+	while ( fscanf( file, "%f", &f ) == 1 )
+		vdvector_pushBack( v, &f );
+
+	gWriteFloat( "data/task02.txt", *v, "%.2f " );
+
+	fclose( file );
+}
+
 void run_branch( ) {
 	test_lab_content( );
 }

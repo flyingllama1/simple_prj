@@ -22,3 +22,16 @@ void gWriteMatrix( const char *file_name, vdvector_t ms ) {
 
 	fclose( write );
 }
+
+void gWriteFloat( const char *file_name, vdvector_t v, const char *format ) {
+	FILE *write = fopen( file_name, "w" );
+
+	for ( size_t i = 0u; i < v.m_size; ++i ) {
+		float f;
+		vdvector_get( &v, i, &f );
+
+		fprintf( write, format, f );
+	}
+
+	fclose( write );
+}

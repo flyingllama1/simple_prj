@@ -1,6 +1,7 @@
 #include "../include.h"
 
 #include <assert.h>
+#include <math.h>
 
 #include <vdvector/include.h>
 #include <matrix/include.h>
@@ -56,6 +57,31 @@ void test_task01( ) {
 	}
 }
 
+void test_task02( ) {
+	vdvector_t tests = vdvector_create( 5u, sizeof( float ) );
+	float arr[ ] = { 1.0f, 2.2224f, 1.337f, 0, -4.0001f };
+	for ( size_t i = 0u; i < 5u; ++i )
+		vdvector_pushBack( &tests, &arr[ i ] );
+
+	gWriteFloat( "data/task02.txt", tests, "%f " );
+
+	vdvector_t v = vdvector_create( 5u, sizeof( float ) );
+	float v_arr[ ] = { 1.0f, 2.22f, 1.33f, 0.00f, -4.00f };
+
+	vdvector_t ret = vdvector_create( 0u, sizeof( float ) );
+	task02( &ret );
+
+	for ( size_t i = 0u; i < v.m_size; ++i ) {
+		float a, b;
+		vdvector_get( &v, i, &a );
+		vdvector_get( &ret, i, &b );
+
+		assert( fabsf( a - b ) < 0.000001f );
+	}
+}
+
 void test_lab_content( ) {
 	test_task01( );
+
+	test_task02( );
 }
