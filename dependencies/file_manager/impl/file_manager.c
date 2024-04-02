@@ -35,3 +35,11 @@ void gWriteFloat( const char *file_name, vdvector_t v, const char *format ) {
 
 	fclose( write );
 }
+
+void gWriteLine( const char *file_name, const char *line ) {
+	FILE *write = fopen( file_name, "w" );
+
+	fprintf( write, line );
+
+	fclose( write );
+}

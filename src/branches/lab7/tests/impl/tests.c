@@ -80,8 +80,34 @@ void test_task02( ) {
 	}
 }
 
+void test_task03( ) {
+	int ret;
+
+	gWriteLine( "data/task03.txt", "2 + 5" );
+	task03( &ret );
+	assert( ret == 7 );
+
+	gWriteLine( "data/task03.txt", "2 + 5 + 3" );
+	task03( &ret );
+	assert( ret == 10 );
+
+	gWriteLine( "data/task03.txt", "2 + 5 * 3" );
+	task03( &ret );
+	assert( ret == 17 );
+
+	gWriteLine( "data/task03.txt", "2 * 6 / 3" );
+	task03( &ret );
+	assert( ret == 4 );
+	
+	gWriteLine( "data/task03.txt", "2 * 5 + 0" );
+	task03( &ret );
+	assert( ret == 10 );
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
 	test_task02( );
+
+	test_task03( );
 }
