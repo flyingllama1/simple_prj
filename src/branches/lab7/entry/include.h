@@ -21,4 +21,6 @@ void task06( float x, vdvector_t *v );
 
 void task07( vdvector_t *nums );
 
+void task08( vdvector_t *ms );
+
 void run_branch( );

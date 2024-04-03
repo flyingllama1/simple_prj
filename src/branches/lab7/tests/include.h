@@ -14,4 +14,6 @@ void test_task06( );
 
 void test_task07( );
 
+void test_task08( );
+
 void test_lab_content( );

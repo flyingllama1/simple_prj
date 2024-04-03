@@ -212,6 +212,33 @@ void test_task05( ) {
 	task05( NULL );
 }
 
+void test_task08( ) {
+	int n = 3;
+	int arr[ ] = {
+		1, 2, 3,
+		4, 5, 6,
+		7, 8, 9,
+		1, 2, 1,
+		2, 3, 2,
+		1, 2, 1,
+	};
+	matrix_t *ms = createMatrixOfFromArray( arr, 2u, n, n );
+
+	FILE *file = fopen( "data/task08.bin", "wb" );
+	fwrite( ms, sizeof( matrix_t ) * 2u, 1u, file );
+	fclose( file );
+
+	vdvector_t ret = vdvector_create( 0u, sizeof( matrix_t ) );
+	task08( &ret );
+
+	for ( size_t i = 0u; i < 2u; ++i ) {
+		matrix_t mm;
+		vdvector_get( &ret, i, &mm );
+
+		assert( areTwoMatricesEqual( &ms[ i ], &mm ) );
+	}
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
@@ -226,4 +253,6 @@ void test_lab_content( ) {
 	test_task06( );
 
 	test_task07( );
+	
+	test_task08( );
 }

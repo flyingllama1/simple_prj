@@ -276,6 +276,33 @@ void task05( vdvector_t *s ) {
 		vdvector_get( &words, i, &rbuf );
 		fprintf( rd, "%s\n", rbuf );
 	}
+
+	fclose( rd );
+}
+
+void task08( vdvector_t *ms ) {
+	FILE *file = fopen( "data/task08.bin", "rb" );
+	if ( file == NULL )
+		STD_ERROR( task08, "cant open file task08.bin" );
+
+	matrix_t mm;
+	while ( fread( &mm, sizeof( matrix_t ), 1u, file ) == 1 ) {
+		if ( !isSymmetricMatrix( &mm ) )
+			transposeSquareMatrix( &mm );
+
+		vdvector_pushBack( ms, &mm );
+	}
+
+	fclose( file );
+
+	FILE *rd = fopen( "data/task08.bin", "wb" );
+	for ( size_t i = 0u; i < ms->m_size; ++i ) {
+		vdvector_get( ms, i, &mm );
+
+		fwrite( &mm, sizeof( matrix_t ), 1u, rd );
+	}
+
+	fclose( rd );
 }
 
 void run_branch( ) {
