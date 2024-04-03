@@ -82,7 +82,7 @@ void test_task02( ) {
 
 void test_task03( ) {
 	int ret;
-
+	
 	gWriteLine( "data/task03.txt", "2 + 5" );
 	task03( &ret );
 	assert( ret == 7 );
@@ -104,10 +104,42 @@ void test_task03( ) {
 	assert( ret == 10 );
 }
 
+void test_task06( ) {
+	polynomial_t poly[ 4u ] = { 
+		{ 3, 1 },
+		{ 2, 1 },
+		{ 1, -1 },
+		{ 0, -1 },
+	};
+
+	FILE *write = fopen( "data/task06.bin", "wb+" );
+	fwrite( poly, sizeof( polynomial_t ), 4u, write );
+	fclose( write );
+	
+	vdvector_t ret = vdvector_create( 0u, sizeof( polynomial_t ) );
+	task06( -1.f, &ret );
+
+	assert( ret.m_size == 3u );
+	polynomial_t assertion[ 3u ] = {
+		{ 3, 1 },
+		{ 1, -1 },
+		{ 0, -1 },
+	};
+
+	for ( size_t i = 0u; i < ret.m_size; ++i ) {
+		polynomial_t p;
+		vdvector_get( &ret, i, &p );
+
+		assert( p.m_coeff == assertion[ i ].m_coeff && p.m_power == assertion[ i ].m_power );
+	}
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
 	test_task02( );
 
 	test_task03( );
+
+	test_task06( );
 }

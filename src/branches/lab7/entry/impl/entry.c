@@ -10,6 +10,8 @@
 
 #include <file_manager/include.h>
 
+#include <math.h>
+
 void task01( vdvector_t *ms ) {
 	FILE *file = fopen( "data/task01.txt", "r" );
 	if ( file == NULL )
@@ -97,7 +99,35 @@ void task03( int *v ) {
 	if ( had_one_more_operation )
 		fprintf( write, "%c %d ", operation2, c );
 
+	fprintf( write, "= %d", ret );
+
 	*v = ret;
+}
+
+void task06( float x, vdvector_t *v ) {
+	FILE *file = fopen( "data/task06.bin", "rb+" );
+	if ( file == NULL )
+		STD_ERROR( task06, "cant open file task06.bin" );
+
+	polynomial_t poly;
+	while ( fread( &poly, sizeof( polynomial_t ), 1, file ) == 1 ) {
+		int res = poly.m_coeff;
+		for ( size_t i = 1u; i < poly.m_power; ++i )
+			res += poly.m_coeff * pow( x, i );
+
+		if ( res != 0 )
+			vdvector_pushBack( v, &poly );
+	}
+
+	FILE *rd = fopen( "data/task06.bin", "wb+" );
+	for ( size_t i = 0u; i < v->m_size; ++i ) {
+		polynomial_t p;
+		vdvector_get( v, i, &p );
+
+		fwrite( &p, sizeof( polynomial_t ), 1u, rd );
+	}
+
+	fclose( rd );
 }
 
 void run_branch( ) {

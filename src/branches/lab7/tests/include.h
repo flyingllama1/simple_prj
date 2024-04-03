@@ -6,4 +6,6 @@ void test_task02( );
 
 void test_task03( );
 
+void test_task06( );
+
 void test_lab_content( );
