@@ -47,6 +47,43 @@ void test_task01( ) {
 	printf( "task01 - OK\n" );
 }
 
+void test_task02( ) {
+	matrix_t board0 = createMatrixFromArray( ( int[ ] ) { 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0 }, 4u, 3u );
+	matrix_t next_gen0 = getMemMatrix( 4u, 3u );
+	task02( &board0, &next_gen0 );
+
+	matrix_t assertion0 = createMatrixFromArray( ( int[ ] ) { 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0 }, 4u, 3u );
+	assert( areTwoMatricesEqual( &next_gen0, &assertion0 ) );
+
+	matrix_t board1 = createMatrixFromArray( ( int[ ] ) { 
+		1, 0, 0, 1, 1, 0, 1, 
+		0, 1, 0, 0, 0, 0, 0, 
+		0, 0, 0, 1, 1, 0, 0, 
+		1, 0, 0, 0, 0, 0, 0, 
+		0, 0, 0, 0, 0, 1, 0, 
+		0, 0, 1, 0, 0, 0, 0, 
+		1, 0, 0, 0, 1, 1, 0 
+	}, 7, 7 );
+	matrix_t next_gen1 = getMemMatrix( 7u, 7u );
+	task02( &board1, &next_gen1 );
+
+	matrix_t assertion1 = createMatrixFromArray( ( int[ ] ) {
+		0, 0, 0, 0, 0, 0, 0,
+		0, 0, 1, 0, 0, 1, 0,
+		0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 1, 0, 0,
+		0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 1, 1, 0,
+		0, 0, 0, 0, 0, 0, 0
+	}, 7u, 7u );
+	
+	assert( areTwoMatricesEqual( &next_gen1, &assertion1 ) );
+
+	printf( "task02 - OK\n" );
+}
+
 void test_lab_content( ) {
 	test_task01( );
+
+	test_task02( );
 }
