@@ -305,6 +305,40 @@ void task08( vdvector_t *ms ) {
 	fclose( rd );
 }
 
+void compareSportsmen( const void *pa, const void *pb ) {
+	sportsman_t a = *( sportsman_t * )pa;
+	sportsman_t b = *( sportsman_t * )pb;
+
+	return b.m_result - a.m_result;
+}
+
+void task09( int n, vdvector_t *v ) {
+	FILE *file = fopen( "data/task09.bin", "rb" );
+	if ( file == NULL )
+		STD_ERROR( task08, "cant open file task09.bin" );
+
+	vdvector_t sportsmen = vdvector_create( 0u, sizeof( sportsman_t ) );
+	
+	sportsman_t s;
+	while ( fread( &s, sizeof( sportsman_t ), 1u, file ) == 1 ) {
+		vdvector_pushBack( &sportsmen, &s );
+	}
+
+	fclose( file );
+
+	qsort( sportsmen.m_data, sportsmen.m_size, sizeof( sportsman_t ), compareSportsmen );
+
+	FILE *rd = fopen( "data/task09.bin", "wb" );
+
+	for ( size_t i = 0u; i < min( n, sportsmen.m_size ); ++i ) {
+		vdvector_get( &sportsmen, i, &s );
+		vdvector_pushBack( v, &s );
+		fwrite( &s, sizeof( sportsman_t ), 1u, rd );
+	}
+
+	fclose( rd );
+}
+
 void run_branch( ) {
 	test_lab_content( );
 }

@@ -239,6 +239,36 @@ void test_task08( ) {
 	}
 }
 
+void test_task09( ) {
+	sportsman_t sportsmen[ ] = {
+		{ "Ivanov I.I.", 20 },
+		{ "Bashmak I.A.", 40 },
+		{ "Shmurdak Z.G.", 119 },
+		{ "Hurma J.J.", 19 },
+		{ "Banditov B.B.",53 }
+	};
+
+	FILE *file = fopen( "data/task09.bin", "wb" );
+	fwrite( sportsmen, sizeof( sportsman_t ), 5u, file );
+	fclose( file );
+
+	vdvector_t ret = vdvector_create( 3u, sizeof( sportsman_t ) );
+	task09( 3, &ret );
+
+	sportsman_t assertion[ ] = {
+		{ "Shmurdak Z.G.", 119 },
+		{ "Banditov B.B.",53 },
+		{ "Bashmak I.A.", 40 },
+	};
+
+	for ( size_t i = 0u; i < 3u; ++i ) {
+		sportsman_t s;
+		vdvector_get( &ret, i, &s );
+
+		assert( s.m_result == assertion[ i ].m_result );
+	}
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
@@ -255,4 +285,6 @@ void test_lab_content( ) {
 	test_task07( );
 	
 	test_task08( );
+
+	test_task09( );
 }
