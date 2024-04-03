@@ -17,7 +17,7 @@
 void task01( vdvector_t *ms ) {
 	FILE *file = fopen( "data/task01.txt", "r" );
 	if ( file == NULL )
-		STD_ERROR( task01, "cannot open file task01.txt" );
+		STD_ERROR_N_EXIT( task01, "cannot open file task01.txt" );
 
 	int n;
 	while ( fscanf( file, "%d", &n  ) == 1 ) {
@@ -39,7 +39,7 @@ void task01( vdvector_t *ms ) {
 void task02( vdvector_t *v ) {
 	FILE *file = fopen( "data/task02.txt", "r" );
 	if ( file == NULL )
-		STD_ERROR( task02, "cannot open file task02.txt" );
+		STD_ERROR_N_EXIT( task02, "cannot open file task02.txt" );
 
 	float f;
 	while ( fscanf( file, "%f", &f ) == 1 )
@@ -66,7 +66,7 @@ int isValidOperator( char c ) {
 void task03( int *v ) {
 	FILE *file = fopen( "data/task03.txt", "r" );
 	if ( file == NULL )
-		STD_ERROR( task03, "cannot open file task03.txt" );
+		STD_ERROR_N_EXIT( task03, "cannot open file task03.txt" );
 
 	int  a, b, c;
 	char operation1, operation2;
@@ -96,20 +96,26 @@ void task03( int *v ) {
 	}
 
 	fclose( file );
+
 	FILE *write = fopen( "data/task03.txt", "w" );
+	if ( write == NULL )
+		STD_ERROR_N_EXIT( task03, "cannot open file task03.txt" );
+
 	fprintf( write, "%d %c %d ", a, operation1, b );
 	if ( had_one_more_operation )
 		fprintf( write, "%c %d ", operation2, c );
 
 	fprintf( write, "= %d", ret );
 
+	fclose( write );
+
 	*v = ret;
 }
 
 void task06( float x, vdvector_t *v ) {
-	FILE *file = fopen( "data/task06.bin", "rb+" );
+	FILE *file = fopen( "data/task06.bin", "rb" );
 	if ( file == NULL )
-		STD_ERROR( task06, "cant open file task06.bin" );
+		STD_ERROR_N_EXIT( task06, "cant open file task06.bin" );
 
 	polynomial_t poly;
 	while ( fread( &poly, sizeof( polynomial_t ), 1, file ) == 1 ) {
@@ -122,7 +128,10 @@ void task06( float x, vdvector_t *v ) {
 	}
 	fclose( file );
 
-	FILE *rd = fopen( "data/task06.bin", "wb+" );
+	FILE *rd = fopen( "data/task06.bin", "wb" );
+	if ( rd == NULL )
+		STD_ERROR_N_EXIT( task06, "cannot open file task06.bin" );
+
 	for ( size_t i = 0u; i < v->m_size; ++i ) {
 		polynomial_t p;
 		vdvector_get( v, i, &p );
@@ -134,9 +143,9 @@ void task06( float x, vdvector_t *v ) {
 }
 
 void task07( vdvector_t *nums ) {
-	FILE *file = fopen( "data/task07.bin", "rb+" );
+	FILE *file = fopen( "data/task07.bin", "rb" );
 	if ( file == NULL )
-		STD_ERROR( task07, "cant open file task07.bin" );
+		STD_ERROR_N_EXIT( task07, "cant open file task07.bin" );
 	
 	vdvector_t pos = vdvector_create( 0u, sizeof( int ) );
 	vdvector_t neg = vdvector_create( 0u, sizeof( int ) );
@@ -153,7 +162,7 @@ void task07( vdvector_t *nums ) {
 
 	FILE *rd = fopen( "data/task07.bin", "wb" );
 	if ( rd == NULL )
-		STD_ERROR( task07, "cant open file task07.bin" );
+		STD_ERROR_N_EXIT( task07, "cant open file task07.bin" );
 
 	for ( size_t i = 0u; i < pos.m_size; ++i ) {
 		vdvector_get( &pos, i, &n );
@@ -194,7 +203,7 @@ int isContainsStringSequence( char *str, char *sq ) {
 void task04( char *alphabet ) {
 	FILE *file = fopen( "data/task04.txt", "r" );
 	if ( file == NULL )
-		STD_ERROR( task04, "cant open file task04.txt" );
+		STD_ERROR_N_EXIT( task04, "cant open file task04.txt" );
 
 	vdvector_t words = vdvector_create( 0u, sizeof( char* ) );
 	
@@ -233,7 +242,7 @@ int isStringContainsNewLine( char *s ) {
 void task05( vdvector_t *s ) {
 	FILE *file = fopen( "data/task05.txt", "r" );
 	if ( file == NULL )
-		STD_ERROR( task05, "cant open file task05.txt" );
+		STD_ERROR_N_EXIT( task05, "cant open file task05.txt" );
 
 	vdvector_t words = vdvector_create( 0u, sizeof( char * ) );
 
@@ -271,6 +280,8 @@ void task05( vdvector_t *s ) {
 	fclose( file );
 
 	FILE *rd = fopen( "data/task05.txt", "w" );
+	if ( rd == NULL )
+		STD_ERROR_N_EXIT( task05, "cannot open file task05.bin" );
 
 	for ( size_t i = 0u; i < words.m_size; ++i ) {
 		vdvector_get( &words, i, &rbuf );
@@ -283,7 +294,7 @@ void task05( vdvector_t *s ) {
 void task08( vdvector_t *ms ) {
 	FILE *file = fopen( "data/task08.bin", "rb" );
 	if ( file == NULL )
-		STD_ERROR( task08, "cant open file task08.bin" );
+		STD_ERROR_N_EXIT( task08, "cant open file task08.bin" );
 
 	matrix_t mm;
 	while ( fread( &mm, sizeof( matrix_t ), 1u, file ) == 1 ) {
@@ -296,6 +307,9 @@ void task08( vdvector_t *ms ) {
 	fclose( file );
 
 	FILE *rd = fopen( "data/task08.bin", "wb" );
+	if ( rd == NULL )
+		STD_ERROR_N_EXIT( task08, "cannot open file task08.bin" );
+
 	for ( size_t i = 0u; i < ms->m_size; ++i ) {
 		vdvector_get( ms, i, &mm );
 
@@ -315,7 +329,7 @@ void compareSportsmen( const void *pa, const void *pb ) {
 void task09( int n, vdvector_t *v ) {
 	FILE *file = fopen( "data/task09.bin", "rb" );
 	if ( file == NULL )
-		STD_ERROR( task09, "cant open file task09.bin" );
+		STD_ERROR_N_EXIT( task09, "cant open file task09.bin" );
 
 	vdvector_t sportsmen = vdvector_create( 0u, sizeof( sportsman_t ) );
 	
@@ -329,6 +343,8 @@ void task09( int n, vdvector_t *v ) {
 	qsort( sportsmen.m_data, sportsmen.m_size, sizeof( sportsman_t ), compareSportsmen );
 
 	FILE *rd = fopen( "data/task09.bin", "wb" );
+	if ( rd == NULL )
+		STD_ERROR_N_EXIT( task09, "cannot open file task09.bin" );
 
 	for ( size_t i = 0u; i < min( n, sportsmen.m_size ); ++i ) {
 		vdvector_get( &sportsmen, i, &s );
@@ -342,11 +358,11 @@ void task09( int n, vdvector_t *v ) {
 void task10( vdvector_t *v ) {
 	FILE *f = fopen( "data/task10_f.bin", "rb" );
 	if ( f == NULL )
-		STD_ERROR( task10, "cant open file task10_f.bin" );
+		STD_ERROR_N_EXIT( task10, "cant open file task10_f.bin" );
 
 	FILE *g = fopen( "data/task10_g.bin", "rb" );
 	if ( g == NULL )
-		STD_ERROR( task10, "cant open file task10_g.bin" );
+		STD_ERROR_N_EXIT( task10, "cant open file task10_g.bin" );
 
 	vdvector_t procurements = vdvector_create( 0u, sizeof( procurement_t ) );
 
@@ -374,6 +390,8 @@ void task10( vdvector_t *v ) {
 	fclose( f );
 
 	FILE *fd = fopen( "data/task10_f.bin", "wb" );
+	if ( fd == NULL )
+		STD_ERROR_N_EXIT( task10, "cannot open file task10_f.bin" );
 
 	for ( size_t i = 0u; i < v->m_size; ++i ) {
 		vdvector_get( v, i, &product );

@@ -4,9 +4,14 @@
 #include <math.h>
 
 #include <vdvector/include.h>
+
 #include <matrix/include.h>
+
 #include <file_manager/include.h>
+
 #include <string/include.h>
+
+#include <exceptions/include.h>
 
 #include "../../entry/include.h"
 
@@ -114,6 +119,9 @@ void test_task06( ) {
 	};
 
 	FILE *write = fopen( "data/task06.bin", "wb+" );
+	if ( write == NULL )
+		STD_ERROR_N_EXIT( test_task06, "cannot open file task06.bin" );
+
 	fwrite( poly, sizeof( polynomial_t ), 4u, write );
 	fclose( write );
 	
@@ -137,7 +145,11 @@ void test_task06( ) {
 
 void test_task07( ) {
 	int arr[ ] = { 1, -2, 4, 2, -9, -1 };
+
 	FILE *rd = fopen( "data/task07.bin", "wb" );
+	if ( rd == NULL )
+		STD_ERROR_N_EXIT( test_task07, "cannot open file task07.bin" );
+
 	fwrite( &arr, sizeof( int ), 6u, rd );
 	fclose( rd );
 
@@ -170,6 +182,8 @@ void test_task04( ) {
 
 	char *assertion1[ ] = { "bc", "abe" };
 	FILE *file1 = fopen( "data/task04.txt", "r" );
+	if ( file1 == NULL )
+		STD_ERROR_N_EXIT( test_task04, "cannot open file task04.txt" );
 
 	vdvector_t ret = vdvector_create( 0u, sizeof( char * ) );
 	
@@ -191,7 +205,11 @@ void test_task04( ) {
 	task04( "aa" );
 
 	char *assertion2[ ] = { "aaa" };
+
 	FILE *file2 = fopen( "data/task04.txt", "r" );
+	if ( file2 == NULL )
+		STD_ERROR_N_EXIT( test_task04, "cannot open file task04.txt" );
+
 	while ( fscanf( file2, "%s", &rbuf ) == 1 )
 		vdvector_pushBack( &ret, &rbuf );
 
@@ -204,6 +222,9 @@ void test_task04( ) {
 
 void test_task05( ) {
 	FILE *f = fopen( "data/task05.txt", "w" );
+	if ( f == NULL )
+		STD_ERROR_N_EXIT( test_task05, "cannot open file task05.txt" );
+
 	fprintf( f, "aaa bc abe\n"
 				"a\n"
 				"\n"
@@ -225,6 +246,9 @@ void test_task08( ) {
 	matrix_t *ms = createMatrixOfFromArray( arr, 2u, n, n );
 
 	FILE *file = fopen( "data/task08.bin", "wb" );
+	if ( file == NULL )
+		STD_ERROR_N_EXIT( test_task08, "cannot open file task08.bin" );
+
 	fwrite( ms, sizeof( matrix_t ) * 2u, 1u, file );
 	fclose( file );
 
@@ -249,6 +273,9 @@ void test_task09( ) {
 	};
 
 	FILE *file = fopen( "data/task09.bin", "wb" );
+	if ( file == NULL )
+		STD_ERROR_N_EXIT( test_task09, "cannot open file task09.bin" );
+
 	fwrite( sportsmen, sizeof( sportsman_t ), 5u, file );
 	fclose( file );
 
@@ -286,10 +313,16 @@ void test_task10( ) {
 	};
 
 	FILE *f = fopen( "data/task10_f.bin", "wb" );
+	if ( f == NULL )
+		STD_ERROR_N_EXIT( test_task10, "cannot open file task10_f.bin" );
+
 	fwrite( products, sizeof( product_t ), 3u, f );
 	fclose( f );
 
 	FILE *g = fopen( "data/task10_g.bin", "wb" );
+	if ( g == NULL )
+		STD_ERROR_N_EXIT( test_task10, "cannot open file task10_g.bin" );
+
 	fwrite( procurements, sizeof( procurement_t ), 6u, g );
 	fclose( g );
 
