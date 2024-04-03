@@ -215,6 +215,8 @@ void task04( char *alphabet ) {
 	fclose( file );
 
 	FILE *rd = fopen( "data/task04.txt", "w" );
+	if ( rd == NULL )
+		STD_ERROR_N_EXIT( task09, "cannot open file task04.txt" );
 
 	for ( size_t i = 0u; i < words.m_size; ++i ) {
 		vdvector_get( &words, i, &rbuf );
@@ -281,7 +283,7 @@ void task05( vdvector_t *s ) {
 
 	FILE *rd = fopen( "data/task05.txt", "w" );
 	if ( rd == NULL )
-		STD_ERROR_N_EXIT( task05, "cannot open file task05.bin" );
+		STD_ERROR_N_EXIT( task05, "cannot open file task05.txt" );
 
 	for ( size_t i = 0u; i < words.m_size; ++i ) {
 		vdvector_get( &words, i, &rbuf );
