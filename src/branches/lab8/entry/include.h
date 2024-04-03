@@ -4,7 +4,7 @@ typedef struct vdvector vdvector_t;
 typedef struct matrix matrix_t;
 
 typedef struct domain_info {
-	char *m_name[ 1024u ];
+	char  m_name[ 1024u ];
 	int   m_visits;
 } domain_info_t;
 
@@ -16,7 +16,7 @@ void task03( matrix_t *m0, matrix_t *m1 );
 
 void task04( char *domains[ ], const size_t domains_amt, vdvector_t *subdomains );
 
-void task05( );
+void task05( matrix_t *mm, int *submatrices );
 
 void task06( );
 

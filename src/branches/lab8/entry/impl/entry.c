@@ -149,6 +149,10 @@ void task04( char *domains[ ], const size_t domains_amt, vdvector_t *subdomains 
 	}
 }
 
+void task05( matrix_t *mm, int *submatrices ) {
+
+}
+
 void run_branch( ) {
 	test_lab_content( );
 }
