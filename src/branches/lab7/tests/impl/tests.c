@@ -6,6 +6,7 @@
 #include <vdvector/include.h>
 #include <matrix/include.h>
 #include <file_manager/include.h>
+#include <string/include.h>
 
 #include "../../entry/include.h"
 
@@ -161,12 +162,66 @@ void test_task07( ) {
 	}
 }
 
+void test_task04( ) {
+	char *str = "aaa bc abe";
+	gWriteLine( "data/task04.txt", str );
+
+	task04( "b" );
+
+	char *assertion1[ ] = { "bc", "abe" };
+	FILE *file1 = fopen( "data/task04.txt", "r" );
+
+	vdvector_t ret = vdvector_create( 0u, sizeof( char * ) );
+	
+	char rbuf[ MAX_STRING_SIZE ];
+	while ( fscanf( file1, "%s", &rbuf ) == 1 )
+		vdvector_pushBack( &ret, &rbuf );
+
+	for ( size_t i = 0u; i < ret.m_size; ++i ) {
+		vdvector_get( &ret, i, &rbuf );
+
+		assert( strcmp_( rbuf, assertion1[ i ] ) == 0 );
+	}
+
+	fclose( file1 );
+
+	vdvector_clear( &ret );
+
+	gWriteLine( "data/task04.txt", str );
+	task04( "aa" );
+
+	char *assertion2[ ] = { "aaa" };
+	FILE *file2 = fopen( "data/task04.txt", "r" );
+	while ( fscanf( file2, "%s", &rbuf ) == 1 )
+		vdvector_pushBack( &ret, &rbuf );
+
+	for ( size_t i = 0u; i < ret.m_size; ++i ) {
+		vdvector_get( &ret, i, &rbuf );
+
+		assert( strcmp_( rbuf, assertion2[ i ] ) == 0 );
+	}
+}
+
+void test_task05( ) {
+	FILE *f = fopen( "data/task05.txt", "w" );
+	fprintf( f, "aaa bc abe\n"
+				"a\n"
+				"\n"
+				"ZZZZ bbbb cccc\n" );
+	fclose( f );
+	task05( NULL );
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
 	test_task02( );
 
 	test_task03( );
+
+	test_task04( );
+	
+	test_task05( );
 
 	test_task06( );
 

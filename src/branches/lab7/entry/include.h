@@ -13,6 +13,10 @@ void task02( vdvector_t *v );
 
 void task03( int *v );
 
+void task04( char *alphabet );
+
+void task05( vdvector_t *s );
+
 void task06( float x, vdvector_t *v );
 
 void task07( vdvector_t *nums );

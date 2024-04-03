@@ -6,6 +6,10 @@ void test_task02( );
 
 void test_task03( );
 
+void test_task04( );
+
+void test_task05( );
+
 void test_task06( );
 
 void test_task07( );
