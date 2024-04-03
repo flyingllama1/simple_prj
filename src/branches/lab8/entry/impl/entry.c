@@ -56,6 +56,43 @@ void task02( matrix_t *m0, matrix_t *m1 ) {
 	}
 }
 
+void getNeighbourPoints( vdvector_t *points, matrix_t *mm, int row, int col ) {
+	int left = max( 0, col - 1 );
+	int head = max( 0, row - 1 );
+	int right = min( mm->m_cols - 1u, col + 1 );
+	int bot = min( mm->m_rows - 1u, row + 1 );
+
+	for ( size_t i = head; i <= bot; ++i )
+		for ( size_t j = left; j <= right; ++j )
+			if ( col != j || row != i )
+				vdvector_pushBack( points, &mm->m_values[ i ][ j ] );
+}
+
+int compareNeighbourPoints( const void *pa, const void *pb ) {
+	int a = *( const int * )pa;
+	int b = *( const int * )pb;
+
+	return a - b;
+}
+
+void task03( matrix_t *m0, matrix_t *m1 ) {
+	for ( size_t i = 0u; i < m0->m_rows; ++i ) {
+		for ( size_t j = 0u; j < m0->m_cols; ++j ) {
+			if ( i == 0u || j == 0u || i == m0->m_rows - 1u || j == m0->m_cols - 1u )
+				m1->m_values[ i ][ j ] = m0->m_values[ i ][ j ];
+			else {
+				vdvector_t neighbours = vdvector_create( 0u, sizeof( int ) );
+				getNeighbourPoints( &neighbours, m0, i, j );
+				qsort( neighbours.m_data, neighbours.m_size, neighbours.m_base_type_size, compareNeighbourPoints );
+
+				int md;
+				vdvector_get( &neighbours, neighbours.m_size / 2, &md );
+				m1->m_values[ i ][ j ] = md;
+			}
+		}
+	}
+}
+
 void run_branch( ) {
 	test_lab_content( );
 }

@@ -82,8 +82,22 @@ void test_task02( ) {
 	printf( "task02 - OK\n" );
 }
 
+void test_task03( ) {
+	int filter = 3;
+	matrix_t m00 = createMatrixFromArray( ( int[ ] ) { 10, 20, 30, 25, 35, 45, 15, 25, 35 }, filter, filter );
+	matrix_t m01 = getMemMatrix( filter, filter );
+
+	task03( &m00, &m01 );
+	
+	matrix_t assertion0 = createMatrixFromArray( ( int[ ] ) { 10, 20, 30, 25, 25, 45, 15, 25, 35 }, filter, filter );
+
+	printf( "task03 - OK\n" );
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
 	test_task02( );
+
+	test_task03( );
 }

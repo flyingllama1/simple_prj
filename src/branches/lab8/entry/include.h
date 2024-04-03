@@ -6,7 +6,7 @@ void task01( matrix_t *mm, int queries[ ][ 4 ], const size_t queries_amt );
 
 void task02( matrix_t *m0, matrix_t *m1 );
 
-void task03( );
+void task03( matrix_t *m0, matrix_t *m1 );
 
 void task04( );
 
