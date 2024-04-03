@@ -233,7 +233,7 @@ int isStringContainsNewLine( char *s ) {
 void task05( vdvector_t *s ) {
 	FILE *file = fopen( "data/task05.txt", "r" );
 	if ( file == NULL )
-		STD_ERROR( task04, "cant open file task05.txt" );
+		STD_ERROR( task05, "cant open file task05.txt" );
 
 	vdvector_t words = vdvector_create( 0u, sizeof( char * ) );
 
@@ -315,7 +315,7 @@ void compareSportsmen( const void *pa, const void *pb ) {
 void task09( int n, vdvector_t *v ) {
 	FILE *file = fopen( "data/task09.bin", "rb" );
 	if ( file == NULL )
-		STD_ERROR( task08, "cant open file task09.bin" );
+		STD_ERROR( task09, "cant open file task09.bin" );
 
 	vdvector_t sportsmen = vdvector_create( 0u, sizeof( sportsman_t ) );
 	
@@ -337,6 +337,51 @@ void task09( int n, vdvector_t *v ) {
 	}
 
 	fclose( rd );
+}
+
+void task10( vdvector_t *v ) {
+	FILE *f = fopen( "data/task10_f.bin", "rb" );
+	if ( f == NULL )
+		STD_ERROR( task10, "cant open file task10_f.bin" );
+
+	FILE *g = fopen( "data/task10_g.bin", "rb" );
+	if ( g == NULL )
+		STD_ERROR( task10, "cant open file task10_g.bin" );
+
+	vdvector_t procurements = vdvector_create( 0u, sizeof( procurement_t ) );
+
+	procurement_t procurement;
+	while ( fread( &procurement, sizeof( procurement_t ), 1u, g ) == 1 ) {
+		vdvector_pushBack( &procurements, &procurement );
+	}
+
+	fclose( g );
+
+	product_t product;
+	while ( fread( &product, sizeof( product_t ), 1u, f ) == 1 ) {
+		for ( size_t i = 0u; i < procurements.m_size; ++i ) {
+			vdvector_get( &procurements, i, &procurement );
+			if ( strcmp_( product.m_name, procurement.m_name ) == 0 ) {
+				product.m_count -= procurement.m_count;
+				product.m_full_price -= product.m_price * procurement.m_count;
+			}
+		}
+
+		if ( product.m_count > 0 )
+			vdvector_pushBack( v, &product );
+	}
+
+	fclose( f );
+
+	FILE *fd = fopen( "data/task10_f.bin", "wb" );
+
+	for ( size_t i = 0u; i < v->m_size; ++i ) {
+		vdvector_get( v, i, &product );
+
+		fwrite( &product, sizeof( product_t ), 1u, fd );
+	}
+
+	fclose( fd );
 }
 
 void run_branch( ) {

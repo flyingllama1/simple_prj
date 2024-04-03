@@ -18,4 +18,6 @@ void test_task08( );
 
 void test_task09( );
 
+void test_task10( );
+
 void test_lab_content( );

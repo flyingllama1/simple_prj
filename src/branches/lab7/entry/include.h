@@ -12,6 +12,18 @@ typedef struct sportsman {
 	int   m_result;
 } sportsman_t;
 
+typedef struct product {
+	char *m_name;
+	int   m_price;
+	int   m_full_price;
+	int   m_count;
+} product_t;
+
+typedef struct procurement {
+	char *m_name;
+	int   m_count;
+} procurement_t;
+
 void task01( vdvector_t *ms );
 
 void task02( vdvector_t *v );
@@ -29,5 +41,7 @@ void task07( vdvector_t *nums );
 void task08( vdvector_t *ms );
 
 void task09( int n, vdvector_t *v );
+
+void task10( vdvector_t *v );
 
 void run_branch( );

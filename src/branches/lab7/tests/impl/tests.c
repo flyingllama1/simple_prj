@@ -269,6 +269,48 @@ void test_task09( ) {
 	}
 }
 
+void test_task10( ) {
+	product_t products[ ] = {
+		{ "Meat", 10, 220, 22 },
+		{ "Milk", 3, 33, 11 },
+		{ "Bread", 1, 253, 253 },
+	};
+
+	procurement_t procurements[ ] = {
+		{ "Meat", 7 },
+		{ "Milk", 2 },
+		{ "Bread", 20 },
+		{ "Meat", 5 },
+		{ "Bread", 105 },
+		{ "Milk", 9 },
+	};
+
+	FILE *f = fopen( "data/task10_f.bin", "wb" );
+	fwrite( products, sizeof( product_t ), 3u, f );
+	fclose( f );
+
+	FILE *g = fopen( "data/task10_g.bin", "wb" );
+	fwrite( procurements, sizeof( procurement_t ), 6u, g );
+	fclose( g );
+
+	vdvector_t ret = vdvector_create( 0u, sizeof( product_t ) );
+	task10( &ret );
+
+	product_t assertion[ ] = {
+		{ "Meat", 10, 100, 10 },
+		{ "Bread", 1, 128, 128 },
+	};
+
+	assert( ret.m_size == 2u );
+	for ( size_t i = 0u; i < 2u; ++i ) {
+		product_t product;
+		vdvector_get( &ret, i, &product );
+
+		assert( strcmp_( product.m_name, assertion[ i ].m_name ) == 0 && product.m_full_price == assertion[ i ].m_full_price
+			&& product.m_price == assertion[ i ].m_price && product.m_count == assertion[ i ].m_count );
+	}
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
@@ -287,4 +329,6 @@ void test_lab_content( ) {
 	test_task08( );
 
 	test_task09( );
+
+	test_task10( );
 }
