@@ -12,6 +12,8 @@
 
 #include <string/include.h>
 
+#include <string.h>
+
 void task01( matrix_t *mm, int queries[ ][ 4 ], const size_t queries_amt ) {
 	for ( size_t i = 0u; i < queries_amt; ++i ) {
 		int *query = queries[ i ];
@@ -88,6 +90,60 @@ void task03( matrix_t *m0, matrix_t *m1 ) {
 				int md;
 				vdvector_get( &neighbours, neighbours.m_size / 2, &md );
 				m1->m_values[ i ][ j ] = md;
+			}
+		}
+	}
+}
+
+void task04( char *domains[ ], const size_t domains_amt, vdvector_t *subdomains ) {
+	for ( size_t i = 0u; i < domains_amt; ++i ) {
+		char  domain[ 1024u ];
+		int	  visits;
+		memset( domain, 0, sizeof( char ) * 1024u );
+		sscanf( domains[ i ], "%d %s", &visits, &domain );
+
+		vdvector_t sb_names = vdvector_create( 0u, sizeof( char * ) );
+		char *tok = strtok( domain, "." );
+
+		while ( tok != NULL ) {
+			vdvector_pushBack( &sb_names, &tok );
+
+			tok = strtok( NULL, "." );
+		}
+
+
+		for ( size_t j = 0u; j < sb_names.m_size; ++j ) {
+			char new_name[ 1024u ];
+			memset( new_name, 0, sizeof( char ) * 1024u );
+
+			for ( size_t k = j; k < sb_names.m_size; ++k ) {
+				char *name;
+				vdvector_get( &sb_names, k, &name );
+
+				strcat( new_name, name );
+				if ( k != sb_names.m_size - 1u )
+					strcat( new_name, "." );
+			}
+
+			int is_in_domains = 0;
+			for ( size_t i = 0u; i < subdomains->m_size; ++i ) {
+				domain_info_t info;
+				vdvector_get( subdomains, i, &info );
+
+				if ( strcmp( info.m_name, new_name ) == 0 ) {
+					is_in_domains = 1;
+					info.m_visits += visits;
+					vdvector_set( subdomains, i, &info );
+					break;
+				}
+			}
+
+			if ( !is_in_domains ) {
+				domain_info_t new_domain;
+				strcpy( new_domain.m_name, new_name );
+				new_domain.m_visits = visits;
+
+				vdvector_pushBack( subdomains, &new_domain );
 			}
 		}
 	}

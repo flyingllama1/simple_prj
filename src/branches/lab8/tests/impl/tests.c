@@ -94,10 +94,29 @@ void test_task03( ) {
 	printf( "task03 - OK\n" );
 }
 
+void test_task04( ) {
+	char *domains[ ] = { "900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org" };
+
+	vdvector_t subdomains = vdvector_create( 0u, sizeof( domain_info_t ) );
+	task04( domains, 4u, &subdomains );
+
+	
+	for ( size_t i = 0u; i < subdomains.m_size; ++i ) {
+		domain_info_t info;
+		vdvector_get( &subdomains, i, &info );
+
+		printf( "%d %s\n", info.m_visits, info.m_name );
+	}
+
+	printf( "task04 OK\n" );
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
 	test_task02( );
 
 	test_task03( );
+
+	test_task04( );
 }
