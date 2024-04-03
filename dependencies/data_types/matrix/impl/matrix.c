@@ -13,8 +13,11 @@ matrix_t getMemMatrix( int rows, int cols ) {
 	matrix_t mat;
 
 	mat.m_values = ( int ** )malloc( sizeof( int * ) * rows );
-	for ( size_t i = 0u; i < rows; ++i )
+	for ( size_t i = 0u; i < rows; ++i ) {
 		mat.m_values[ i ] = malloc( sizeof( int ) * cols );
+		for ( size_t j = 0u; j < cols; ++j )
+			mat.m_values[ i ][ j ] = 0;
+	}
 
 	mat.m_cols = cols;
 	mat.m_rows = rows;
