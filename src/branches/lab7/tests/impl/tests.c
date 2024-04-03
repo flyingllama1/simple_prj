@@ -134,6 +134,33 @@ void test_task06( ) {
 	}
 }
 
+void test_task07( ) {
+	int arr[ ] = { 1, -2, 4, 2, -9, -1 };
+	FILE *rd = fopen( "data/task07.bin", "wb" );
+	fwrite( &arr, sizeof( int ), 6u, rd );
+	fclose( rd );
+
+	vdvector_t nums = vdvector_create( 6u, sizeof( int ) );
+
+	task07( &nums );
+
+	vdvector_t assertion = vdvector_create( 6u, sizeof( int ) );
+	vdvector_pushBack( &assertion, &arr[ 0 ] );
+	vdvector_pushBack( &assertion, &arr[ 2 ] );
+	vdvector_pushBack( &assertion, &arr[ 3 ] );
+	vdvector_pushBack( &assertion, &arr[ 1 ] );
+	vdvector_pushBack( &assertion, &arr[ 4 ] );
+	vdvector_pushBack( &assertion, &arr[ 5 ] );
+
+	for ( size_t i = 0u; i < assertion.m_size; ++i ) {
+		int n, a;
+		vdvector_get( &nums, i, &n );
+		vdvector_get( &assertion, i, &a );
+
+		assert( n == a );
+	}
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
@@ -142,4 +169,6 @@ void test_lab_content( ) {
 	test_task03( );
 
 	test_task06( );
+
+	test_task07( );
 }

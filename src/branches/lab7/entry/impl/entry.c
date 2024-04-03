@@ -118,6 +118,7 @@ void task06( float x, vdvector_t *v ) {
 		if ( res != 0 )
 			vdvector_pushBack( v, &poly );
 	}
+	fclose( file );
 
 	FILE *rd = fopen( "data/task06.bin", "wb+" );
 	for ( size_t i = 0u; i < v->m_size; ++i ) {
@@ -125,6 +126,45 @@ void task06( float x, vdvector_t *v ) {
 		vdvector_get( v, i, &p );
 
 		fwrite( &p, sizeof( polynomial_t ), 1u, rd );
+	}
+
+	fclose( rd );
+}
+
+void task07( vdvector_t *nums ) {
+	FILE *file = fopen( "data/task07.bin", "rb+" );
+	if ( file == NULL )
+		STD_ERROR( task07, "cant open file task07.bin" );
+	
+	vdvector_t pos = vdvector_create( 0u, sizeof( int ) );
+	vdvector_t neg = vdvector_create( 0u, sizeof( int ) );
+
+	int n;
+	while ( fread( &n, sizeof( int ), 1, file ) == 1 ) {
+		if ( n >= 0 )
+			vdvector_pushBack( &pos, &n );
+		else
+			vdvector_pushBack( &neg, &n );
+	}
+
+	fclose( file );
+
+	FILE *rd = fopen( "data/task07.bin", "wb" );
+	if ( rd == NULL )
+		STD_ERROR( task07, "cant open file task07.bin" );
+
+	for ( size_t i = 0u; i < pos.m_size; ++i ) {
+		vdvector_get( &pos, i, &n );
+
+		fwrite( &n, sizeof( int ), 1u, rd );
+		vdvector_pushBack( nums, &n );
+	}
+
+	for ( size_t i = 0u; i < neg.m_size; ++i ) {
+		vdvector_get( &neg, i, &n );
+
+		fwrite( &n, sizeof( int ), 1u, rd );
+		vdvector_pushBack( nums, &n );
 	}
 
 	fclose( rd );
