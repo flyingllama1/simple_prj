@@ -150,7 +150,29 @@ void task04( char *domains[ ], const size_t domains_amt, vdvector_t *subdomains 
 }
 
 void task05( matrix_t *mm, int *submatrices ) {
+	matrix_t sq = getMemMatrix( mm->m_rows, mm->m_cols );
+	for ( size_t i = 0u; i < mm->m_rows; ++i ) {
+		for ( size_t j = 0u; j < mm->m_cols; ++j ) {
+			if ( i == 0u && mm->m_values[ i ][ j ] == 1 )
+				sq.m_values[ i ][ j ] = 1;
+			else if ( mm->m_values[ i ][ j ] == 1 ) {
+				sq.m_values[ i ][ j ] = sq.m_values[ i - 1 ][ j ] + 1;
+			}
+		}
+	}
 
+//	outputMatrix( dp );
+
+	for ( size_t i = 0u; i < mm->m_rows; ++i ) {
+		for ( size_t j = 0u; j < mm->m_cols; ++j ) {
+			for ( size_t k = j + 1u; k < mm->m_cols + 1u; ++k ) {
+				int m = sq.m_values[ i ][ j ];
+				for ( size_t v = j; v < k; ++v )
+					m = min( m, sq.m_values[ i ][ v ] );
+				( *submatrices ) += m;
+			}
+		}
+	}
 }
 
 void run_branch( ) {

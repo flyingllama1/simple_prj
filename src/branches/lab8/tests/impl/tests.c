@@ -113,11 +113,13 @@ void test_task04( ) {
 
 void test_task05( ) {
 	matrix_t mm = createMatrixFromArray( ( int[ ] ) { 1, 0, 1, 1, 1, 0, 1, 1, 0 }, 3, 3 );
-	
+
 	int ret = 0;
 	task05( &mm, &ret );
 
-	printf( "%d", ret );
+	assert( ret == 13 );
+
+	printf( "task05 OK\n" );
 }
 
 void test_lab_content( ) {
