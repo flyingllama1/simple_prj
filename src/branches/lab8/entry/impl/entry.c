@@ -240,6 +240,44 @@ void task08( char *s, const int *indices ) {
 	strcpy_( buf, buf + strlen_( buf ), s );
 }
 
-void run_branch( ) {
-	test_lab_content( );
+void task09( char **argv, int argc, vdvector_t *ret ) {
+	char *in = NULL;
+	char *out = NULL;
+	int   n;
+	for ( size_t i = 1u; i < argc; ++i ) {
+		if ( i == 1u )
+			in = argv[ i ];
+		else if ( i == 2u )
+			out = argv[ i ];
+		else if ( i == 3u )
+			n = atoi( argv[ i ] );
+	}
+
+	FILE *file = fopen( in, "r" );
+	if ( file == NULL )
+		STD_ERROR_N_EXIT( task09, "cannot open file" );
+
+	int x;
+	while ( fscanf( file, "%d", &x ) == 1 ) {
+		if ( x > n )
+			vdvector_pushBack( ret, &x );
+	}
+
+	fclose( file );
+
+	FILE *rd = fopen( out, "w" );
+	if ( rd == NULL )
+		STD_ERROR_N_EXIT( task09, "cannot open file" );
+
+	for ( size_t i = 0u; i < ret->m_size; ++i ) {
+		vdvector_get( ret, i, &x );
+
+		fprintf( rd, "%d ", x );
+	}
+
+	fclose( rd );
+}
+
+void run_branch( char **argv, int argc ) {
+	test_lab_content( argv, argc );
 }

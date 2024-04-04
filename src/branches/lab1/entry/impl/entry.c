@@ -10,7 +10,7 @@
 
 #include <ordered_set/include.h>
 
-void run_branch( ) {
+void run_branch( char **argv, int argc ) {
     test_bset( );
 
     test_unordered_set( );

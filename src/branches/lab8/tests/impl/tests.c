@@ -227,7 +227,25 @@ void test_task08( ) {
 	ASSERT_STRING( "apab", s1 );
 }
 
-void test_lab_content( ) {
+void test_task09( char **argv, int argc ) {
+	gWriteLine( "data/20/task09i.txt", "9 2 4 1 0 15 21 45" );
+
+	vdvector_t vec = vdvector_create( 0u, sizeof( int ) );
+	task09( argv, argc, &vec );
+
+	int assertion[ ] = {
+		9, 4, 15, 21, 45
+	};
+
+	assert( vec.m_size == 5u );
+	for ( size_t i = 0u; i < 5u; ++i ) {
+		int x;
+		vdvector_get( &vec, i, &x );
+		assert( assertion[ i ] == x );
+	}
+}
+
+void test_lab_content( char **argv, int argc ) {
 	test_task01( );
 
 	test_task02( );
@@ -243,4 +261,6 @@ void test_lab_content( ) {
 	test_task07( );
 
 	test_task08( );
+
+	test_task09( argv, argc );
 }

@@ -31,8 +31,8 @@ node_t *task07( const int *arr, const size_t size );
 
 void task08( char *s, const int *indices );
 
-void task09( );
+void task09( char **argv, int argc, vdvector_t *ret );
 
 void task10( );
 
-void run_branch( );
+void run_branch( char **argv, int argc );

@@ -8,4 +8,4 @@ void test_task03( );
 
 void test_task04( );
 
-void test_lab_content( );
+void test_lab_content( char **argv, int argc );

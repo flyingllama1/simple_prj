@@ -1,5 +1,5 @@
 #include "main.h"
 
-int main( char **argv, int argc ) { // 4f
-	run_branch( );
+int main( int argc, char **argv ) { // 4f
+	run_branch( argv, argc );
 }

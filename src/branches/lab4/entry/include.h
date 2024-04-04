@@ -38,4 +38,4 @@ int task17( matrix_t *mat, int *b );
 
 long long task18( matrix_t *mat );
 
-void run_branch( );
+void run_branch( char **argv, int argc );

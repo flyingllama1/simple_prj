@@ -6,7 +6,7 @@
 
 #include <vdvector/include.h>
 
-void run_branch( ) {
+void run_branch( char **argv, int argc ) {
 	test_vector_content0( );
 
 	test_vector_content1( );
