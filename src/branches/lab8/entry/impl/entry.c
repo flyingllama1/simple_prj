@@ -16,7 +16,6 @@
 
 #include <string.h>
 
-
 void task01( matrix_t *mm, int queries[ ][ 4 ], const size_t queries_amt ) {
 	for ( size_t i = 0u; i < queries_amt; ++i ) {
 		int *query = queries[ i ];
@@ -244,6 +243,10 @@ void task09( char **argv, int argc, vdvector_t *ret ) {
 	char *in = NULL;
 	char *out = NULL;
 	int   n;
+
+	if ( argc != 4u )
+		STD_ERROR( task09, "wrong arguments" );
+
 	for ( size_t i = 1u; i < argc; ++i ) {
 		if ( i == 1u )
 			in = argv[ i ];
@@ -276,6 +279,39 @@ void task09( char **argv, int argc, vdvector_t *ret ) {
 	}
 
 	fclose( rd );
+}
+
+void task10( char **argv, int argc ) {
+	char *in = NULL;
+	int   n;
+	int   read_lines;
+
+	if ( argc != 3u )
+		STD_ERROR( task09, "wrong arguments" );
+
+	for ( size_t i = 1u; i < argc; ++i ) {
+		if ( i == 1u )
+			in = argv[ i ];
+		else if ( i == 2u ) {
+			n = atoi( argv[ i ] );
+			read_lines = n;
+		}
+	}
+
+	FILE *file = fopen( in, "r" );
+	if ( file == NULL )
+		STD_ERROR_N_EXIT( task10, "cannot open file" );
+
+	char line[ 1024u ];
+	while ( fgets( line, sizeof( line ), file ) != NULL ) {
+		while ( read_lines == n ) {
+			int c = getch( );
+			if ( c == 3 )
+				read_lines = 0;
+		}
+		printf( "%s", line );
+		++read_lines;
+	}
 }
 
 void run_branch( char **argv, int argc ) {

@@ -243,6 +243,14 @@ void test_task09( char **argv, int argc ) {
 		vdvector_get( &vec, i, &x );
 		assert( assertion[ i ] == x );
 	}
+
+	printf( "task09 OK\n" );
+}
+
+void test_task10( char **argv, int argc ) {
+	gWriteLine( "data/20/task10.txt", "aa\nb\ne\nmahmud\nzz\nxy" );
+
+	task10( argv, argc );
 }
 
 void test_lab_content( char **argv, int argc ) {
@@ -262,5 +270,10 @@ void test_lab_content( char **argv, int argc ) {
 
 	test_task08( );
 
-	test_task09( argv, argc );
+	int task_loading = 10;
+
+	if ( task_loading != 10 )
+		test_task09( argv, argc );
+
+	test_task10( argv, argc );
 }

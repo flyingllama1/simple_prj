@@ -33,6 +33,6 @@ void task08( char *s, const int *indices );
 
 void task09( char **argv, int argc, vdvector_t *ret );
 
-void task10( );
+void task10( char **argv, int argc );
 
 void run_branch( char **argv, int argc );
