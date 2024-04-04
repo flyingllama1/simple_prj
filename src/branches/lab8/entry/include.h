@@ -29,7 +29,7 @@ void task06( char *sig, int *res );
 
 node_t *task07( const int *arr, const size_t size );
 
-void task08( );
+void task08( char *s, const int *indices );
 
 void task09( );
 

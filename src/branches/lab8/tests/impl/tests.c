@@ -213,6 +213,20 @@ void test_task07( ) {
 	printf( "task07 OK\n" );
 }
 
+void test_task08( ) {
+	char *s0 = "abc";
+	int indices0[ ] = { 0, 1, 2 };
+	
+	task08( s0, indices0 );
+	ASSERT_STRING( "abc", s0 );
+
+	char *s1 = "abap";
+	int indices1[ ] = { 0, 3, 2, 1 };
+	task08( s1, indices1 );
+
+	ASSERT_STRING( "apab", s1 );
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
@@ -227,4 +241,6 @@ void test_lab_content( ) {
 	test_task06( );
 
 	test_task07( );
+
+	test_task08( );
 }

@@ -12,7 +12,10 @@
 
 #include <string/include.h>
 
+#include <algorithm/include.h>
+
 #include <string.h>
+
 
 void task01( matrix_t *mm, int queries[ ][ 4 ], const size_t queries_amt ) {
 	for ( size_t i = 0u; i < queries_amt; ++i ) {
@@ -221,6 +224,20 @@ node_t *constructNode( int *arr, const size_t size ) {
 
 node_t *task07( const int *arr, const size_t size, node_t *tree ) {
 	return constructNode( arr, size );
+}
+
+void task08( char *s, const int *indices ) {
+	char buf[ 1024u ];
+	memset( buf, 0, sizeof( char ) * 1024u );
+
+	int size = strlen_( s );
+	for ( size_t i = 0u; i < size; ++i ) {
+		buf[ i ] = s[ indices[ i ] ];
+	}
+
+	buf[ size ] = '\0';
+
+	strcpy_( buf, buf + strlen_( buf ), s );
 }
 
 void run_branch( ) {
