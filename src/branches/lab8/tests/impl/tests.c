@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <math.h>
 
+#include <vector/include.h>
 #include <vdvector/include.h>
 
 #include <matrix/include.h>
@@ -112,12 +113,18 @@ void test_task04( ) {
 }
 
 void test_task05( ) {
-	matrix_t mm = createMatrixFromArray( ( int[ ] ) { 1, 0, 1, 1, 1, 0, 1, 1, 0 }, 3, 3 );
+	matrix_t mm0 = createMatrixFromArray( ( int[ ] ) { 1, 0, 1, 1, 1, 0, 1, 1, 0 }, 3, 3 );
 
-	int ret = 0;
-	task05( &mm, &ret );
+	int ret0 = 0;
+	task05( &mm0, &ret0 );
 
-	assert( ret == 13 );
+	assert( ret0 == 13 );
+
+	matrix_t mm1 = createMatrixFromArray( ( int[ ] ) { 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0 }, 3, 4 );
+	int ret1 = 0;
+	task05( &mm1, &ret1 );
+	
+	assert( ret1 == 24 );
 
 	printf( "task05 OK\n" );
 }
@@ -138,6 +145,74 @@ void test_task06( ) {
 	printf( "task06 OK\n" );
 }
 
+enum RootState {
+	ROOT_NULL,
+};
+void printLeftRight( node_t *left, node_t *right ) {
+	int shouldnt_print_next_root = left == NULL && right == NULL;
+	if ( shouldnt_print_next_root )
+		return;
+
+	if ( left )
+		printf( "%d ", left->m_value );
+	else
+		printf( "(null) " );
+
+	if ( right )
+		printf( "%d ", right->m_value );
+	else
+		printf( "(null) " );
+}
+
+void printTree_( node_t *root ) {
+	if ( root == NULL ) {
+		return;
+	}
+
+	node_t *left = root->m_left, *right = root->m_right;
+	if ( left || right ) {
+		printLeftRight( left, right );
+		if ( left )
+			printLeftRight( left->m_left, left->m_right );
+		if ( right )
+			printLeftRight( right->m_left, right->m_right );
+
+		if ( left ) {
+			printTree_( left->m_left );
+			printTree_( left->m_right );
+		} 
+
+		if ( right ) {
+			printTree_( right->m_left );
+			printTree_( right->m_right );
+		}
+	}
+}
+
+void printTree( node_t *tree ) {
+	printf( "%d ", tree->m_value );
+	printTree_( tree );
+	printf( "\n" );
+}
+
+void test_task07( ) {
+	int arr0[ ] = { 3, 2, 1, 6, 0, 5 };
+
+	node_t *tree0 = task07( arr0, 6u );
+	
+	printf( "	tree0: " );
+	printTree( tree0 );
+
+	int arr1[ ] = { 3, 12, 6, 7, 8, 4, 1, 10 };
+	
+	node_t *tree1 = task07( arr1, 8u );
+
+	printf( "	tree1: " );
+	printTree( tree1 );
+
+	printf( "task07 OK\n" );
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
@@ -150,4 +225,6 @@ void test_lab_content( ) {
 	test_task05( );
 
 	test_task06( );
+
+	test_task07( );
 }

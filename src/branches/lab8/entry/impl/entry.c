@@ -201,6 +201,28 @@ void task06( char *sig, int *res ) {
 	*res = atoi( buf );
 }
 
+node_t *constructNode( int *arr, const size_t size ) {
+	if ( size == 0u )
+		return NULL;
+
+	int mx = 0u;
+	for ( size_t i = 1u; i < size; ++i )
+		if ( arr[ mx ] < arr[ i ] )
+			mx = i;
+
+	node_t *node = ( node_t * )malloc( sizeof( node_t ) );
+
+	node->m_value = arr[ mx ];
+	node->m_left = constructNode( arr, mx );
+	node->m_right = constructNode( arr + mx + 1u, size - mx - 1u );
+
+	return node;
+}
+
+node_t *task07( const int *arr, const size_t size, node_t *tree ) {
+	return constructNode( arr, size );
+}
+
 void run_branch( ) {
 	test_lab_content( );
 }
