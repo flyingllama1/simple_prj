@@ -287,7 +287,7 @@ void task10( char **argv, int argc ) {
 	int   read_lines;
 
 	if ( argc != 3u )
-		STD_ERROR( task09, "wrong arguments" );
+		STD_ERROR( task10, "wrong arguments" );
 
 	for ( size_t i = 1u; i < argc; ++i ) {
 		if ( i == 1u )
