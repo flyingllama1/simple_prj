@@ -122,6 +122,22 @@ void test_task05( ) {
 	printf( "task05 OK\n" );
 }
 
+void test_task06( ) {
+	char *sig0 = "IIIDIDDD";
+	int   ret0;
+	task06( sig0, &ret0 );
+
+	assert( ret0 == 123549876 );
+
+	char *sig1 = "DDD";
+	int   ret1;
+	task06( sig1, &ret1 );
+
+	assert( ret1 == 4321 );
+
+	printf( "task06 OK\n" );
+}
+
 void test_lab_content( ) {
 	test_task01( );
 
@@ -132,4 +148,6 @@ void test_lab_content( ) {
 	test_task04( );
 
 	test_task05( );
+
+	test_task06( );
 }

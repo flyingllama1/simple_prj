@@ -18,7 +18,7 @@ void task04( char *domains[ ], const size_t domains_amt, vdvector_t *subdomains 
 
 void task05( matrix_t *mm, int *submatrices );
 
-void task06( );
+void task06( char *sig, int *res );
 
 void task07( );
 

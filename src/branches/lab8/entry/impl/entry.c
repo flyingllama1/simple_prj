@@ -175,6 +175,32 @@ void task05( matrix_t *mm, int *submatrices ) {
 	}
 }
 
+void task06( char *sig, int *res ) {
+	char buf[ 1024u ];
+	int  stack[ 1024u ];
+
+	int size = strlen_( sig );
+	int stack_size = 0;
+	int buffer_size = 0;
+	int n = 1;
+
+	for ( size_t i = 0u; i < size; ++i ) {
+		stack[ stack_size++ ] = n++;
+		if ( sig[ i ] == 'I' ) {
+			while ( stack_size > 0 )
+				buf[ buffer_size++ ] = stack[ --stack_size ] + '0';
+		}
+	}
+
+	stack[ stack_size++ ] = n;
+	while ( stack_size > 0 )
+		buf[ buffer_size++ ] = stack[ --stack_size ] + '0';
+
+	buf[ buffer_size ] = '\0';
+
+	*res = atoi( buf );
+}
+
 void run_branch( ) {
 	test_lab_content( );
 }
